@@ -1,0 +1,343 @@
+/* 容器：色框区分的可嵌套区块 */
+
+.node.container {
+  --slot-pad: 14px;
+  position: relative;
+  min-height: 48px;
+  border-radius: var(--radius);
+  padding: var(--slot-pad);
+  background: var(--panel-2);
+  box-shadow: var(--shadow);
+  transition: outline 0.15s ease, box-shadow 0.15s ease;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.node.container.selected {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.node.dragging {
+  opacity: 0.45;
+}
+
+.container-chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+  min-height: 24px;
+  cursor: pointer;
+}
+
+.chrome-hint {
+  margin-left: auto;
+  margin-right: 4px;
+  font-size: 10px;
+  color: var(--muted);
+  opacity: 0.85;
+}
+
+.node.container.chrome-show > .container-chrome .chrome-hint {
+  display: none;
+}
+
+.container-tag {
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: var(--accent-soft);
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.container-body {
+  min-height: 40px;
+  border-radius: 12px;
+  padding: 0;
+  min-width: 0;
+  /* 防止行内子项溢出画到侧栏上 */
+  overflow: hidden;
+}
+
+/* 隐藏壳：不占文档流，但保留悬浮标题条以便点选 / 改显示 */
+.node.container.chrome-hide {
+  padding: 0;
+  min-height: 0;
+  box-shadow: none;
+}
+
+.node.container.chrome-hide > .container-chrome {
+  display: flex;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  z-index: 30;
+  margin: 0;
+  padding: 4px 6px;
+  min-height: 28px;
+  border-radius: 10px;
+  background: rgba(26, 27, 33, 0.94);
+  border: 1px solid var(--line);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.12s ease;
+}
+
+/* 悬停整块容器（含子元素）或选中时，露出可点标题条 */
+.node.container.chrome-hide:hover > .container-chrome,
+.node.container.chrome-hide.selected > .container-chrome,
+.node.container.chrome-hide.is-chrome-hot > .container-chrome {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.node.container.chrome-hide:hover,
+.node.container.chrome-hide.selected {
+  outline: 1px dashed rgba(139, 156, 255, 0.45);
+  outline-offset: 2px;
+}
+
+.node.container.chrome-hide.selected {
+  outline: 2px solid var(--accent);
+}
+
+/* 宽度 */
+.width-1-4 { width: calc(25% - 12px); flex: 0 0 calc(25% - 12px); }
+.width-1-3 { width: calc(33.333% - 12px); flex: 0 0 calc(33.333% - 12px); }
+.width-1-2 { width: calc(50% - 12px); flex: 0 0 calc(50% - 12px); }
+.width-1-1 { width: 100%; flex: 0 0 100%; }
+
+@media (max-width: 900px) {
+  .width-1-4,
+  .width-1-3,
+  .width-1-2 {
+    width: 100%;
+    flex-basis: 100%;
+  }
+}
+
+/* 内部布局 */
+.layout-column > .container-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.layout-row > .container-body {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; /* 空间不够时挤一挤，不换行 */
+  gap: 12px;
+  align-items: center; /* 双栏默认垂直居中 */
+}
+
+/* 行内子项均分并允许收缩，避免撑破父级 */
+.layout-row > .container-body > .node {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.layout-row > .container-body > .node.component {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.layout-row > .container-body > .node.width-1-4 {
+  flex: 1 1 0;
+  max-width: calc(25% - 9px);
+}
+.layout-row > .container-body > .node.width-1-3 {
+  flex: 1 1 0;
+  max-width: calc(33.333% - 8px);
+}
+.layout-row > .container-body > .node.width-1-2 {
+  flex: 1 1 0;
+  max-width: calc(50% - 6px);
+}
+.layout-row > .container-body > .node.width-1-1 {
+  flex: 1 1 100%;
+  max-width: 100%;
+  width: 100%;
+}
+
+/* 垂直对齐（行 / 网格） */
+.align-start.layout-row > .container-body,
+.align-start.layout-grid > .container-body { align-items: start; }
+
+.align-center.layout-row > .container-body,
+.align-center.layout-grid > .container-body { align-items: center; }
+
+.align-end.layout-row > .container-body,
+.align-end.layout-grid > .container-body { align-items: end; }
+
+.align-stretch.layout-row > .container-body,
+.align-stretch.layout-grid > .container-body { align-items: stretch; }
+
+/* 槽内内容对齐：让插图在右栏里居中，而不是贴顶贴左 */
+.justify-start > .container-body { justify-content: flex-start; align-items: stretch; }
+.justify-center.layout-column > .container-body {
+  justify-content: center;
+  align-items: center;
+}
+.justify-center.layout-column > .container-body > .node {
+  width: 100%;
+}
+.justify-end.layout-column > .container-body {
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+/* 瀑布流：多列自适应错落 */
+.layout-waterfall > .container-body {
+  column-count: 3;
+  column-gap: 12px;
+}
+
+.layout-waterfall.cols-2 > .container-body { column-count: 2; }
+.layout-waterfall.cols-3 > .container-body { column-count: 3; }
+.layout-waterfall.cols-4 > .container-body { column-count: 4; }
+
+.layout-waterfall > .container-body > .node {
+  break-inside: avoid;
+  margin-bottom: 12px;
+  width: 100%;
+  display: inline-block;
+}
+
+.layout-grid > .container-body {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+}
+
+.layout-grid.cols-2 > .container-body {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.layout-grid.cols-3 > .container-body {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.layout-grid.cols-4 > .container-body {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* 主从分栏：一个容器内两个槽，宽:窄 = 2:1 */
+.layout-grid.cols-main-side > .container-body {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+}
+
+.layout-grid > .container-body > .node.span-1 { grid-column: span 1; }
+.layout-grid > .container-body > .node.span-2 { grid-column: span 2; }
+.layout-grid > .container-body > .node.span-3 { grid-column: span 3; }
+.layout-grid > .container-body > .node.span-full { grid-column: 1 / -1; }
+
+.layout-grid > .container-body > .node.container {
+  width: auto;
+  flex: unset;
+  min-width: 0;
+}
+
+/* 布局容器：编辑时淡虚线，提示可投放 */
+.node.container.role-layout.chrome-hide {
+  min-height: 56px;
+}
+
+.node.container.role-layout.chrome-hide > .container-body:empty,
+.node.container.role-slot.chrome-hide > .container-body:empty {
+  min-height: 72px;
+  border: 1px dashed rgba(139, 156, 255, 0.35);
+  border-radius: 12px;
+  background: rgba(139, 156, 255, 0.04);
+}
+
+.node.container.role-slot.chrome-hide > .container-body:empty::after {
+  content: "拖入组件";
+  display: grid;
+  place-items: center;
+  height: 72px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+/* 样式变体 */
+.style-plain {
+  border: 1px solid transparent;
+  box-shadow: none;
+  background: transparent;
+  padding: 0;
+}
+
+.style-plain.chrome-show {
+  padding: 4px;
+}
+
+.style-plain.chrome-show > .container-chrome {
+  opacity: 0.55;
+}
+
+.style-bordered {
+  border: 1.5px solid var(--line);
+  background: var(--panel-2);
+}
+
+.style-soft {
+  border: none;
+  background: var(--soft-panel);
+  box-shadow: none;
+}
+
+.style-gradient {
+  border: none;
+  background: linear-gradient(135deg, var(--gradient-a), var(--gradient-b));
+  color: #f5f3ff;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+}
+
+.style-gradient .container-tag {
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.style-gradient .btn-icon {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* 有色块但隐藏壳时，仍保留内容内边距，保证与同级色块内容对齐 */
+.style-soft.chrome-hide,
+.style-bordered.chrome-hide,
+.style-gradient.chrome-hide,
+.style-glow.chrome-hide {
+  padding: var(--slot-pad);
+}
+
+.style-glow {
+  border: 1.5px solid rgba(74, 222, 128, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(74, 222, 128, 0.12),
+    0 0 22px rgba(74, 222, 128, 0.18),
+    var(--shadow);
+  background: #1a2420;
+  color: #e8fff2;
+}
+
+.style-glow .container-tag {
+  background: rgba(74, 222, 128, 0.12);
+  color: #86efac;
+}
+
+.style-glow .comp-text,
+.style-glow .comp-chart-title {
+  color: #b7c4bc;
+}

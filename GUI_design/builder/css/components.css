@@ -1,0 +1,319 @@
+/* 叶子组件样式 */
+
+.node.component {
+  border-radius: 12px;
+  min-width: 0;
+}
+
+.node.component.selected {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.comp-heading {
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.comp-heading.h1 { font-size: 34px; }
+.comp-heading.h2 { font-size: 26px; }
+.comp-heading.h3 { font-size: 20px; }
+
+.comp-heading .accent {
+  color: var(--accent);
+}
+
+.comp-text {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+  font-size: 14px;
+}
+
+.comp-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.comp-definition-body {
+  font-size: 20px;
+  font-weight: 650;
+  line-height: 1.35;
+  margin: 8px 0 12px;
+}
+
+.comp-definition-body u {
+  text-decoration-color: var(--accent);
+  text-underline-offset: 3px;
+}
+
+.comp-definition-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.info-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid rgba(139, 156, 255, 0.45);
+  display: inline-grid;
+  place-items: center;
+  font-size: 10px;
+  color: var(--accent);
+}
+
+.comp-metric-value {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.comp-metric-meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.trend {
+  color: #4ade80;
+  font-weight: 600;
+}
+
+.comp-callout-inner {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.comp-callout-title {
+  font-size: 20px;
+  font-weight: 750;
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
+
+.comp-callout-inner p {
+  margin: 0;
+  line-height: 1.5;
+  opacity: 0.92;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.comp-metric-mini {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  font-size: 13px;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.comp-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  max-width: 100%;
+}
+
+.mm-value {
+  font-weight: 700;
+}
+
+.comp-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.comp-chart-title {
+  font-size: 13px;
+  font-weight: 650;
+}
+
+.chart-svg {
+  width: 100%;
+  height: 96px;
+  color: var(--accent);
+  background: linear-gradient(180deg, #2a2d3a, #262833);
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.bar-row {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  height: 96px;
+  padding: 10px;
+  border-radius: 12px;
+  background: #2a2d3a;
+}
+
+.bar-row i {
+  flex: 1;
+  height: var(--h);
+  border-radius: 6px 6px 2px 2px;
+  background: linear-gradient(180deg, #8b7cf7, #5b6cff);
+  display: block;
+}
+
+.comp-status-strip {
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(139, 156, 255, 0.16);
+  color: #c5ceff;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.comp-progress-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  margin-bottom: 6px;
+  color: var(--muted);
+}
+
+.comp-progress-track {
+  height: 8px;
+  border-radius: 999px;
+  background: #3a3b46;
+  overflow: hidden;
+}
+
+.comp-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #8b7cf7);
+}
+
+.comp-ring {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.comp-ring-meta {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.comp-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comp-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--input-bg);
+  font-size: 13px;
+}
+
+.comp-checklist li.done {
+  opacity: 0.65;
+  text-decoration: line-through;
+}
+
+.comp-checklist li.warn {
+  background: rgba(245, 158, 11, 0.14);
+}
+
+.check {
+  width: 18px;
+  height: 18px;
+  border-radius: 5px;
+  border: 1.5px solid rgba(139, 156, 255, 0.4);
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.warn-badge {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 700;
+  color: #b45309;
+  background: #fde68a;
+  padding: 2px 6px;
+  border-radius: 999px;
+}
+
+.comp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(108, 92, 231, 0.2);
+  font-size: 12px;
+}
+
+.style-gradient .tag {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.style-gradient .comp-callout-inner,
+.style-gradient .comp-callout-title {
+  color: #fff;
+}
+
+.comp-image-art {
+  width: 110px;
+  max-width: 100%;
+  aspect-ratio: 1;
+  height: auto;
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 30% 30%, #fff 0 12%, transparent 13%),
+    radial-gradient(circle at 70% 40%, #c4b5fd 0 18%, transparent 19%),
+    conic-gradient(from 40deg, #7c3aed, #60a5fa, #f472b6, #7c3aed);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+.comp-image span {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.comp-fallback {
+  padding: 12px;
+  background: var(--danger-bg);
+  color: var(--danger);
+  border-radius: 10px;
+  font-size: 12px;
+}
+
+/* 渐变容器内子组件默认继承浅色 */
+.style-gradient .comp-text {
+  color: rgba(255, 255, 255, 0.9);
+}

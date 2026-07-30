@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>组件预览 — AIGUI Builder</title>
+  <link rel="stylesheet" href="./css/app.css" />
+  <link rel="stylesheet" href="./css/containers.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+  <link rel="stylesheet" href="./css/preview.css" />
+</head>
+<body class="preview-page">
+  <header class="preview-top">
+    <div class="preview-brand">
+      <strong>组件样式预览</strong>
+      <span>点击卡片查看并可修改该组件的可编辑字段</span>
+    </div>
+    <nav class="preview-nav">
+      <a class="preview-link" href="./index.html">← 返回设计器</a>
+    </nav>
+  </header>
+
+  <div class="preview-layout">
+    <div class="preview-left">
+      <div class="preview-toolbar">
+        <label class="preview-surface">
+          底色
+          <select id="surface-select">
+            <option value="panel" selected>面板</option>
+            <option value="soft">柔和</option>
+            <option value="bordered">描边</option>
+            <option value="gradient">渐变</option>
+            <option value="glow">发光</option>
+          </select>
+        </label>
+        <div class="preview-count muted" id="preview-count"></div>
+      </div>
+      <main class="preview-main" id="preview-root"></main>
+    </div>
+
+    <aside class="preview-inspector" id="preview-inspector">
+      <h3>可修改内容</h3>
+      <div id="preview-inspector-body">
+        <p class="muted">点击左侧某个组件卡片，查看它支持修改的字段，并可实时预览。</p>
+      </div>
+    </aside>
+  </div>
+
+  <script type="module" src="./js/preview.js"></script>
+</body>
+</html>

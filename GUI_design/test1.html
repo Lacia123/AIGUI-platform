@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AIGUI Builder</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    font-family:Inter,Arial;
+}
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    background:#f5f5fb;
+}
+
+
+/* 左侧组件 */
+
+.palette{
+
+    width:220px;
+    background:white;
+    border-right:1px solid #ddd;
+    padding:20px;
+
+}
+
+
+.palette h3{
+    margin-top:0;
+}
+
+
+.component{
+
+    padding:12px;
+    margin-bottom:10px;
+
+    background:#f0efff;
+    border-radius:10px;
+
+    cursor:grab;
+
+}
+
+
+
+/* 中间 */
+
+.canvas{
+
+    flex:1;
+
+    padding:30px;
+
+    overflow:auto;
+
+}
+
+
+
+/* Card */
+
+.card{
+
+    min-height:120px;
+
+    border:2px solid #b8a8ff;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    background:white;
+
+    position:relative;
+
+
+}
+
+
+.card.selected{
+
+    outline:3px solid #6c5ce7;
+
+}
+
+
+
+.card.row{
+
+    display:flex;
+    gap:20px;
+
+}
+
+
+.card.column{
+
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+
+}
+
+
+
+.child{
+
+    padding:15px;
+
+    border-radius:12px;
+
+}
+
+
+/* 组件 */
+
+.heading{
+
+font-size:32px;
+font-weight:800;
+
+}
+
+
+.text{
+
+color:#666;
+
+}
+
+
+
+.definition{
+
+background:#fafafa;
+
+}
+
+
+
+.chart{
+
+height:120px;
+
+background:
+linear-gradient(
+45deg,
+#eee,
+#ddd
+);
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+}
+
+
+.callout{
+
+background:#6c63ff;
+color:white;
+
+}
+
+
+
+.image{
+
+height:100px;
+
+background:#ddd;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+}
+
+
+
+/* inspector */
+
+
+.inspector{
+
+width:250px;
+
+background:white;
+
+border-left:1px solid #ddd;
+
+padding:20px;
+
+}
+
+
+
+button{
+
+width:100%;
+margin-top:10px;
+padding:10px;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- 左侧 -->
+
+<div class="palette">
+
+
+<h3>Components</h3>
+
+
+<div class="component" draggable="true" data-type="card">
+📦 Card
+</div>
+
+
+<div class="component" draggable="true" data-type="heading">
+Title
+</div>
+
+
+<div class="component" draggable="true" data-type="text">
+Description
+</div>
+
+
+<div class="component" draggable="true" data-type="definition">
+Definition Block
+</div>
+
+
+<div class="component" draggable="true" data-type="chart">
+Chart
+</div>
+
+
+<div class="component" draggable="true" data-type="callout">
+Callout
+</div>
+
+
+<div class="component" draggable="true" data-type="image">
+Illustration
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- Canvas -->
+
+
+<div class="canvas" id="canvas">
+
+
+<div class="card column">
+
+<div class="child heading">
+The Domain
+</div>
+
+
+<div class="child text">
+Think of it as the Guest List for your function.
+</div>
+
+
+
+<div class="card row">
+
+
+<div class="child definition">
+
+CORE DEFINITION
+<br><br>
+
+The complete set of all possible input values.
+
+</div>
+
+
+<div class="child chart">
+
+Function Chart
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="child callout">
+
+The Input-Output Rule
+
+</div>
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<!-- Inspector -->
+
+<div class="inspector">
+
+
+<h3>Inspector</h3>
+
+
+<div id="info">
+Select Card
+</div>
+
+
+<button onclick="toggleLayout()">
+Toggle Layout
+</button>
+
+
+<button onclick="deleteNode()">
+Delete
+</button>
+
+
+</div>
+
+
+
+
+
+<script>
+
+
+let selected=null;
+
+
+
+/**
+ * 拖入组件
+ */
+
+
+document.querySelectorAll(".component")
+.forEach(c=>{
+
+
+c.addEventListener(
+"dragstart",
+e=>{
+
+e.dataTransfer.setData(
+"type",
+c.dataset.type
+)
+
+})
+
+})
+
+
+
+
+
+let canvas=document.querySelector("#canvas");
+
+
+
+canvas.addEventListener(
+"dragover",
+e=>{
+
+e.preventDefault();
+
+})
+
+
+
+canvas.addEventListener(
+"drop",
+e=>{
+
+let type=
+e.dataTransfer.getData("type");
+
+
+let node=createComponent(type);
+
+
+canvas.appendChild(node);
+
+
+})
+
+
+function createComponent(type){
+
+
+let div=document.createElement("div");
+
+
+if(type==="card"){
+
+div.className="card column";
+
+div.innerHTML="New Card";
+
+
+}else{
+
+
+div.className=
+"child "+type;
+
+
+let text={
+
+heading:"New Heading",
+
+text:"New Description",
+
+definition:"Definition",
+
+chart:"Chart",
+
+callout:"Important",
+
+image:"Image"
+
+}[type];
+
+
+div.innerHTML=text;
+
+
+}
+
+
+
+bind(div);
+
+
+return div;
+
+}
+
+
+
+
+function bind(node){
+
+
+node.onclick=e=>{
+
+e.stopPropagation();
+
+
+if(selected)
+
+selected.classList.remove("selected");
+
+
+selected=node;
+
+
+if(node.classList.contains("card"))
+
+node.classList.add("selected");
+
+
+document.querySelector("#info")
+.innerHTML=
+node.className;
+
+
+}
+
+
+}
+
+
+
+document.querySelectorAll(".card,.child")
+.forEach(bind);
+
+
+
+
+function toggleLayout(){
+
+
+if(!selected ||
+!selected.classList.contains("card"))
+return;
+
+
+selected.classList.toggle("row");
+
+selected.classList.toggle("column");
+
+
+}
+
+
+
+function deleteNode(){
+
+
+if(selected){
+
+selected.remove();
+
+selected=null;
+
+}
+
+
+}
+
+
+
+
+</script>
+
+
+</body>
+</html>

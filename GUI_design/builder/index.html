@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AIGUI Builder — Container & Component System</title>
+  <link rel="stylesheet" href="./css/app.css" />
+  <link rel="stylesheet" href="./css/containers.css" />
+  <link rel="stylesheet" href="./css/components.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- 左侧：容器 + 组件库（由 registry 动态渲染） -->
+    <aside class="sidebar">
+      <div class="brand">
+        <strong>AIGUI Builder</strong>
+        <span>拖拽容器与组件 · 支持嵌套色框</span>
+      </div>
+      <div id="palette"></div>
+    </aside>
+
+    <!-- 中间设计区 -->
+    <main class="workspace">
+      <header class="toolbar">
+        <h1>设计画布</h1>
+        <div class="toolbar-actions">
+          <a class="toolbar-link" href="./preview.html">组件预览</a>
+          <button type="button" id="btn-demo">加载 Domain 示例</button>
+          <button type="button" id="btn-import">导入 JSON</button>
+          <button type="button" id="btn-export">导出 JSON</button>
+          <button type="button" id="btn-reset">清空</button>
+          <input type="file" id="import-file" accept="application/json,.json" hidden />
+        </div>
+      </header>
+      <div class="canvas" id="canvas">
+        <div class="canvas-board drop-zone" id="board" data-role="board"></div>
+      </div>
+    </main>
+
+    <!-- 右侧 Inspector -->
+    <aside class="inspector" id="inspector">
+      <h3>Inspector</h3>
+      <div id="inspector-body">
+        <p class="muted">选中画布中的容器或组件进行编辑。</p>
+      </div>
+    </aside>
+  </div>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
