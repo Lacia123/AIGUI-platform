@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# RL
+src/RL/checkpoints/
+src/RL/**/__pycache__/
+*.zip
+runs/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -1,12 +1,13 @@
 import { useMemo, useRef, useState } from 'react'
 import { getActiveDrag, setActiveDrag } from '../dragState'
 import { canPlace, snapToCell } from '../gridUtils'
-import type { GridItem, ResolutionPreset } from '../types'
+import { cellOrigin, spanSize, type GridMetrics } from '../gridMetrics'
+import type { GridItem } from '../types'
 import type { DragPayload } from './dragTypes'
 import { DRAG_MIME } from './dragTypes'
 
 type Props = {
-  preset: ResolutionPreset
+  metrics: GridMetrics
   items: GridItem[]
   onPlace: (item: Omit<GridItem, 'id'>) => boolean
   onMove: (id: string, x: number, y: number) => boolean
@@ -17,7 +18,7 @@ type Props = {
 }
 
 export function GridCanvas({
-  preset,
+  metrics,
   items,
   onPlace,
   onMove,
@@ -35,20 +36,25 @@ export function GridCanvas({
     ok: boolean
   } | null>(null)
 
-  const cellW = preset.width / preset.cols
-  const cellH = preset.height / preset.rows
+  const { pageW, pageH, cols, rows, cellW, cellH, gap } = metrics
 
   const gridStyle = useMemo(
     () =>
       ({
-        width: preset.width,
-        height: preset.height,
-        gridTemplateColumns: `repeat(${preset.cols}, ${cellW}px)`,
-        gridTemplateRows: `repeat(${preset.rows}, ${cellH}px)`,
-        backgroundSize: `${cellW}px ${cellH}px`,
+        width: pageW,
+        height: pageH,
+        gridTemplateColumns: `repeat(${cols}, ${cellW}px)`,
+        gridTemplateRows: `repeat(${rows}, ${cellH}px)`,
+        gap: `${gap}px`,
       }) as React.CSSProperties,
-    [preset, cellW, cellH],
+    [pageW, pageH, cols, rows, cellW, cellH, gap],
   )
+
+  function itemBox(x: number, y: number, w: number, h: number) {
+    const { left, top } = cellOrigin(x, y, cellW, cellH, gap)
+    const { width, height } = spanSize(w, h, cellW, cellH, gap)
+    return { left, top, width, height }
+  }
 
   function readPayload(e: React.DragEvent): DragPayload | null {
     const live = getActiveDrag()
@@ -74,8 +80,8 @@ export function GridCanvas({
 
   function updateGhost(e: React.DragEvent, w: number, h: number, excludeId?: string) {
     const { x: lx, y: ly } = localPoint(e)
-    const { x, y } = snapToCell(lx, ly, cellW, cellH, preset.cols, preset.rows, w, h)
-    const ok = canPlace(items, x, y, w, h, preset.cols, preset.rows, excludeId)
+    const { x, y } = snapToCell(lx, ly, cellW, cellH, cols, rows, w, h, gap)
+    const ok = canPlace(items, x, y, w, h, cols, rows, excludeId)
     setGhost({ x, y, w, h, ok })
     return { x, y, ok }
   }
@@ -102,16 +108,7 @@ export function GridCanvas({
     if (payload.kind === 'palette') {
       const { item } = payload
       const { x: lx, y: ly } = localPoint(e)
-      const { x, y } = snapToCell(
-        lx,
-        ly,
-        cellW,
-        cellH,
-        preset.cols,
-        preset.rows,
-        item.w,
-        item.h,
-      )
+      const { x, y } = snapToCell(lx, ly, cellW, cellH, cols, rows, item.w, item.h, gap)
       onPlace({
         type: item.type,
         label: item.label,
@@ -125,16 +122,7 @@ export function GridCanvas({
     }
 
     const { x: lx, y: ly } = localPoint(e)
-    const { x, y } = snapToCell(
-      lx,
-      ly,
-      cellW,
-      cellH,
-      preset.cols,
-      preset.rows,
-      payload.w,
-      payload.h,
-    )
+    const { x, y } = snapToCell(lx, ly, cellW, cellH, cols, rows, payload.w, payload.h, gap)
     onMove(payload.id, x, y)
   }
 
@@ -158,8 +146,8 @@ export function GridCanvas({
       <div
         className="canvas-scale"
         style={{
-          width: preset.width * scale,
-          height: preset.height * scale,
+          width: pageW * scale,
+          height: pageH * scale,
         }}
       >
         <div
@@ -175,19 +163,14 @@ export function GridCanvas({
           onDrop={handleDrop}
           onClick={() => onSelect(null)}
         >
-          {Array.from({ length: preset.cols * preset.rows }, (_, i) => (
+          {Array.from({ length: cols * rows }, (_, i) => (
             <div key={i} className="grid-cell" />
           ))}
 
           {ghost && (
             <div
               className={`ghost ${ghost.ok ? 'ok' : 'bad'}`}
-              style={{
-                left: ghost.x * cellW,
-                top: ghost.y * cellH,
-                width: ghost.w * cellW,
-                height: ghost.h * cellH,
-              }}
+              style={itemBox(ghost.x, ghost.y, ghost.w, ghost.h)}
             />
           )}
 
@@ -210,10 +193,7 @@ export function GridCanvas({
                 onRemove(item.id)
               }}
               style={{
-                left: item.x * cellW,
-                top: item.y * cellH,
-                width: item.w * cellW,
-                height: item.h * cellH,
+                ...itemBox(item.x, item.y, item.w, item.h),
                 background: item.color,
               }}
               title={`${item.label} @ (${item.x},${item.y}) 双击删除`}

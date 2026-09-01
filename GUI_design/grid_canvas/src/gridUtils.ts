@@ -42,7 +42,10 @@ export function canPlace(
   )
 }
 
-/** 把指针像素坐标吸附为网格格点 */
+/**
+ * 把指针像素坐标吸附为网格格点。
+ * 步进为 cell + gap（落在 gap 槽内仍归入左侧/上侧格）。
+ */
 export function snapToCell(
   localX: number,
   localY: number,
@@ -52,9 +55,12 @@ export function snapToCell(
   rows: number,
   w: number,
   h: number,
+  gap = 0,
 ): { x: number; y: number } {
-  let x = Math.floor(localX / cellW)
-  let y = Math.floor(localY / cellH)
+  const strideW = cellW + gap
+  const strideH = cellH + gap
+  let x = Math.floor(localX / Math.max(1e-6, strideW))
+  let y = Math.floor(localY / Math.max(1e-6, strideH))
   x = Math.max(0, Math.min(x, cols - w))
   y = Math.max(0, Math.min(y, rows - h))
   return { x, y }

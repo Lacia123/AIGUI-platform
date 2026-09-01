@@ -1,0 +1,180 @@
+"""根据教育 App 设计稿抽象出的布局样例。
+
+统一度量：单位格 80 + gap 16
+  phone → 4×8；desktop → 13×8；tablet → 8×10；square → 8×8
+元组格式均为 (w, h, x, y)。
+"""
+
+from __future__ import annotations
+
+DESIGN_MOCKUP_SAMPLES: list[dict] = [
+    {
+        "id": "design-phone-calculus",
+        "preset_id": "phone",
+        "label": "设计稿·手机复习",
+        "description": "目标卡 + 日程 + 提醒 + CTA（4×8 @80/16）",
+        "cards": [
+            (4, 2, 0, 0),
+            (4, 3, 0, 2),
+            (4, 1, 0, 5),
+            (4, 2, 0, 6),
+        ],
+    },
+    {
+        "id": "design-phone-calculus-tight",
+        "preset_id": "phone",
+        "label": "设计稿·手机复习(紧凑)",
+        "description": "同结构更紧凑（4×8）",
+        "cards": [
+            (4, 1, 0, 0),
+            (4, 4, 0, 1),
+            (4, 1, 0, 5),
+            (4, 2, 0, 6),
+        ],
+    },
+    {
+        "id": "design-desktop-class-over",
+        "preset_id": "desktop",
+        "label": "设计稿·课堂结束",
+        "description": "顶栏 + 4 工具 + 图谱/笔记（13×8）",
+        "cards": [
+            (13, 1, 0, 0),
+            (3, 2, 0, 1),
+            (3, 2, 3, 1),
+            (3, 2, 6, 1),
+            (4, 2, 9, 1),
+            (5, 5, 0, 3),
+            (8, 5, 5, 3),
+        ],
+    },
+    {
+        "id": "design-tablet-class-over",
+        "preset_id": "tablet",
+        "label": "设计稿·课堂结束(平板)",
+        "description": "平板 8×10",
+        "cards": [
+            (8, 1, 0, 0),
+            (2, 2, 0, 1),
+            (2, 2, 2, 1),
+            (2, 2, 4, 1),
+            (2, 2, 6, 1),
+            (3, 6, 0, 3),
+            (5, 6, 3, 3),
+            (8, 1, 0, 9),
+        ],
+    },
+    {
+        "id": "design-square-class-over",
+        "preset_id": "square",
+        "label": "设计稿·课堂结束(方阵)",
+        "description": "8×8",
+        "cards": [
+            (8, 1, 0, 0),
+            (2, 2, 0, 1),
+            (2, 2, 2, 1),
+            (2, 2, 4, 1),
+            (2, 2, 6, 1),
+            (3, 4, 0, 3),
+            (5, 4, 3, 3),
+            (8, 1, 0, 7),
+        ],
+    },
+    {
+        "id": "design-desktop-exam-prep",
+        "preset_id": "desktop",
+        "label": "设计稿·备考仪表盘",
+        "description": "入口行 + 三列（13×8）",
+        "cards": [
+            (13, 1, 0, 0),
+            (3, 2, 0, 1),
+            (3, 2, 3, 1),
+            (3, 2, 6, 1),
+            (4, 2, 9, 1),
+            (4, 5, 0, 3),
+            (5, 5, 4, 3),
+            (4, 5, 9, 3),
+        ],
+    },
+    {
+        "id": "design-tablet-exam-prep",
+        "preset_id": "tablet",
+        "label": "设计稿·备考(平板)",
+        "description": "平板 8×10",
+        "cards": [
+            (8, 1, 0, 0),
+            (2, 2, 0, 1),
+            (2, 2, 2, 1),
+            (2, 2, 4, 1),
+            (2, 2, 6, 1),
+            (3, 5, 0, 3),
+            (3, 5, 3, 3),
+            (2, 5, 6, 3),
+            (8, 2, 0, 8),
+        ],
+    },
+    {
+        "id": "design-desktop-exam-prep-v2",
+        "preset_id": "desktop",
+        "label": "设计稿·备考(矮顶栏)",
+        "description": "入口更高、底卡略矮（13×8）",
+        "cards": [
+            (13, 1, 0, 0),
+            (3, 2, 0, 1),
+            (3, 2, 3, 1),
+            (3, 2, 6, 1),
+            (4, 2, 9, 1),
+            (4, 5, 0, 3),
+            (5, 5, 4, 3),
+            (4, 5, 9, 3),
+        ],
+    },
+    {
+        "id": "design-desktop-domain",
+        "preset_id": "desktop",
+        "label": "设计稿·Domain 概念页",
+        "description": "标题 + 双栏 + 底栏（13×8）",
+        "cards": [
+            (13, 2, 0, 0),
+            (6, 4, 0, 2),
+            (7, 4, 6, 2),
+            (13, 2, 0, 6),
+        ],
+    },
+    {
+        "id": "design-tablet-domain",
+        "preset_id": "tablet",
+        "label": "设计稿·Domain(平板)",
+        "description": "平板竖向更强（8×10）",
+        "cards": [
+            (8, 2, 0, 0),
+            (4, 4, 0, 2),
+            (4, 4, 4, 2),
+            (8, 3, 0, 6),
+            (8, 1, 0, 9),
+        ],
+    },
+    {
+        "id": "design-square-domain",
+        "preset_id": "square",
+        "label": "设计稿·Domain(方阵)",
+        "description": "8×8",
+        "cards": [
+            (8, 2, 0, 0),
+            (4, 4, 0, 2),
+            (4, 4, 4, 2),
+            (8, 2, 0, 6),
+        ],
+    },
+    {
+        "id": "design-phone-domain-stack",
+        "preset_id": "phone",
+        "label": "设计稿·Domain(手机堆叠)",
+        "description": "竖屏堆叠 4×8",
+        "cards": [
+            (4, 1, 0, 0),
+            (4, 1, 0, 1),
+            (4, 3, 0, 2),
+            (4, 3, 0, 5),
+        ],
+    },
+]
