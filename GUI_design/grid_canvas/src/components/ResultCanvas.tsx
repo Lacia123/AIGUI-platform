@@ -11,7 +11,7 @@ type Props = {
 
 /**
  * 大空白结果画布：按坐标渲染，支持单位格 + gap 度量。
- * 块上的 #n 表示布局序列中的先后顺序。
+ * 块上显示顺序号与 card 类型名。
  */
 export function ResultCanvas({ metrics, items, scale = 1 }: Props) {
   const { pageW, pageH, cols, rows, cellW, cellH, gap } = metrics
@@ -60,9 +60,10 @@ export function ResultCanvas({ metrics, items, scale = 1 }: Props) {
                 ...itemBox(item.x, item.y, item.w, item.h),
                 background: item.color,
               }}
-              title={`#${index + 1} (w,h,x,y)=(${item.w},${item.h},${item.x},${item.y})`}
+              title={`#${index + 1} ${item.type} (w,h,x,y)=(${item.w},${item.h},${item.x},${item.y})`}
             >
               <span className="result-block-order">#{index + 1}</span>
+              <span className="result-block-type">{item.type}</span>
               <span className="result-block-meta">
                 ({item.x},{item.y}) {item.w}×{item.h}
               </span>

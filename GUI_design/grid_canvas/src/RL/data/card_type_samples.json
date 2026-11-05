@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "description": "每种 card 一段样例文本（裸 PSUIP 或透传原文）。samples 的键为 card type。课堂页样例对齐 docx/图像还原85.xml。",
+  "samples": {
+    "targetStatCard": {
+      "source": "data/example2.md",
+      "psuip": "<targetStatCard>\n  <subtitle>FOR MAGGIE</subtitle>\n  <title>Master Calculus in 14 Days.</title>\n  <text>240</text>\n  <caption>TOTAL PROBLEMS</caption>\n  <button nativeEvent=\"click\" data=\"viewReport\">查看报告</button>\n</targetStatCard>"
+    },
+    "mistakesCard": {
+      "source": "data/example2.md",
+      "psuip": "<mistakesCard>\n<title>Weak Spots</title>\n<mistakesCardItem type=\"normal\">\n<title>Multivariable Calculus</title>\n<text>38% Mastery</text>\n<caption>12 Mistakes</caption>\n</mistakesCardItem>\n</mistakesCard>"
+    },
+    "showcaseCard": {
+      "source": "docx/图像还原85.xml",
+      "psuip": "<showcaseCard>\n<title>Related files</title>\n<subtitle>4 Related Files</subtitle>\n<imageTextItem>\n<image src=\"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600\" alt=\"Lecture slides\"></image>\n    <title>Lecture Slides - Ch7</title>\n    <text>14MB · Sent by Professor Zhang</text>\n</imageTextItem>\n<commonListItem>\n  <icon>📄</icon>\n  <layout:column>\n    <title>Definite Integral Notes.docx</title>\n    <text>1.2MB · Sent by u0_a204</text>\n  </layout:column>\n</commonListItem>\n<commonListItem>\n  <icon>📊</icon>\n  <layout:column>\n    <title>Practice Problems.xlsx</title>\n    <text>856KB · Sent by u0_a204</text>\n  </layout:column>\n</commonListItem>\n<commonListItem>\n  <icon>📕</icon>\n  <layout:column>\n    <title>Midterm Review.pdf</title>\n    <text>2.3MB · Sent by u0_a204</text>\n  </layout:column>\n</commonListItem>\n<caption>4 Files · Courseware & Homework</caption>\n</showcaseCard>"
+    },
+    "summaryCard": {
+      "source": "data/example2.md",
+      "psuip": "<summaryCard>\n  <icon></icon>\n  <title title=\"悬停显示完整标题\">生成岗位JD完成</title>\n  <commit>查看过程</commit>\n  <text>已生成完整岗位说明，包含岗位职责、任职要求及加分项。</text>\n</summaryCard>"
+    },
+    "contentSummaryCard": {
+      "source": "docx/图像还原85.xml",
+      "psuip": "<contentSummaryCard>\n  <coverImage src=\"https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&h=600\" alt=\"Whiteboard capture\"></coverImage>\n  <title>Smart Camera</title>\n  <description>4 Images captured · Whiteboard 1: Bayes' theorem proof</description>\n  <primaryAction>查看全部 4 张</primaryAction>\n</contentSummaryCard>"
+    },
+    "textCard": {
+      "source": "docx/图像还原85.xml",
+      "psuip": "<textCard>\n  <text_title>0714 Advanced Mathematics</text_title>\n  <text_subtitle>Room 401 · Professor Zhang</text_subtitle>\n</textCard>"
+    },
+    "commonStyleServiceListDesc": {
+      "source": "data/gird_with_cardtype/contents_source_legend.psuip.md",
+      "psuip": "<commonStyleServiceListDesc>\n  <icon>1</icon>\n  <title>Definition of Functions</title>\n  <desc>Definition of Functions</desc>\n</commonStyleServiceListDesc>"
+    },
+    "pairedImageTextCard": {
+      "source": "data/example2.md",
+      "psuip": "<pairedImageTextCard>\n  <label>公司简介</label>\n  <title>致力于提供最先进的数字化解决方案</title>\n  <content>我们围绕技术、团队与服务能力，为客户提供可持续的数字化支持。</content>\n  <primaryItem>\n    <image src=\"https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1200&h=800\" alt=\"企业会议与数字化方案讨论\" />\n    <title>关于企业</title>\n    <body>我们是一家专注于人工智能和大数据领域的创新科技公司。</body>\n  </primaryItem>\n  <secondaryItem>\n    <image src=\"https://images.unsplash.com/photo-1556761175-b413da4baf72?w=1200&h=800\" alt=\"团队协作会议\" />\n    <title>关于团队</title>\n    <body>我们拥有一支充满活力和创新精神的技术团队。</body>\n  </secondaryItem>\n</pairedImageTextCard>"
+    },
+    "heroCard": {
+      "source": "data/example2.md",
+      "psuip": "<heroCard>\n  <cover_image src=\"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&h=900\"></cover_image>\n  <badge>热门目的地</badge>\n  <title>发现你的下一站旅行</title>\n  <subtitle>个性化行程推荐，AI 智能规划，帮你找到更合适的旅程节奏。</subtitle>\n  <metrics>⭐ 4.9 · 128K 用户</metrics>\n  <cta_primary href=\"https://example.com/plan\">开始计划</cta_primary>\n  <cta_secondary href=\"https://example.com/destinations\">查看目的地</cta_secondary>\n</heroCard>"
+    },
+    "[table:commonStyle]": {
+      "source": "data/example2.md",
+      "psuip": "[table:commonStyle]\n| DingOS版本号 | 设备数量 | 操作 |\n|------|------|------|\n| AWS | 美国、亚洲、亚太 | ⟳  ⋮ |\n| Azure | 全球20+区域 | ⟳  ⋮ |\n| 阿里云 | 中国大陆主要城市 | ⟳  ⋮ |\n| 私有云 | 定制化部署 | ⟳  ⋮ |"
+    },
+    "__rawMarkdown__": {
+      "source": "docx/CARD_REFERENCE.md",
+      "psuip": "## Homogeneous Equations\n\nWhen $f(x) = 0$, the equation is homogeneous.\n\n- Real roots → exponential terms\n- Complex roots → $e^{\\alpha x}\\cos(\\beta x)$"
+    },
+    "Topology": {
+      "source": "data/example2.md",
+      "psuip": "[Topology|title=导数与微分知识图谱]\n@@@\n{\n  \"nodes\": [\n    {\"id\":\"Chapter:导数与微分\",\"labels\":[\"Chapter\"],\"props\":{\"name\":\"导数与微分\"}},\n    {\"id\":\"Topic:导数的概念\",\"labels\":[\"Topic\"],\"props\":{\"name\":\"导数的概念\"}},\n    {\"id\":\"KP:导数的定义\",\"labels\":[\"KnowledgePoint\"],\"props\":{\"name\":\"导数的定义\"}}\n  ],\n  \"edges\": [\n    {\"id\":\"e1\",\"type\":\"HAS_TOPIC\",\"source\":\"Chapter:导数与微分\",\"target\":\"Topic:导数的概念\"},\n    {\"id\":\"e2\",\"type\":\"HAS_KP\",\"source\":\"Topic:导数的概念\",\"target\":\"KP:导数的定义\"}\n  ]\n}\n@@@"
+    }
+  }
+}

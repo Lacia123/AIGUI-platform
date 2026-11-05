@@ -1,0 +1,289 @@
+{
+  "canvas": {
+    "width": 390,
+    "height": 844,
+    "gap": 16.0
+  },
+  "cardCount": 12,
+  "candidates": [
+    {
+      "rank": 1,
+      "score": 3.876413,
+      "penalties": {
+        "overflow": 3.034495,
+        "too_narrow": 0.304443,
+        "aspect_ratio": 0.245808,
+        "excess_space": 0.0,
+        "complexity": 0.291667,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "column",
+        "children": [
+          {
+            "kind": "row",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 0
+              },
+              {
+                "kind": "card",
+                "cardIndex": 1
+              }
+            ]
+          },
+          {
+            "kind": "row",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 2
+              },
+              {
+                "kind": "card",
+                "cardIndex": 3
+              }
+            ]
+          },
+          {
+            "kind": "row",
+            "children": [
+              {
+                "kind": "column",
+                "children": [
+                  {
+                    "kind": "card",
+                    "cardIndex": 4
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 5
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 6
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 7
+                  }
+                ]
+              },
+              {
+                "kind": "column",
+                "children": [
+                  {
+                    "kind": "card",
+                    "cardIndex": 8
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 9
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 10
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 11
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:column>\n    <layout:row>\n      <textCard>\n        <text_title>Well done, class is over!</text_title>\n        <text_subtitle>Room 401 · Professor Zhang</text_subtitle>\n      </textCard>\n      <targetStatCard>\n        <title href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_transcription\">Transcription</title>\n        <text>01:24:30</text>\n        <caption>DURATION</caption>\n        <subtitle>Classroom audio</subtitle>\n      </targetStatCard>\n    </layout:row>\n    <layout:row>\n      <targetStatCard>\n        <title href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_related_files\">Related files</title>\n        <text>4</text>\n        <caption>FILES</caption>\n        <subtitle>Courseware Title Plan – Download the Latest</subtitle>\n      </targetStatCard>\n      <targetStatCard>\n        <title href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_smart_camera\">Smart Camera</title>\n        <text>32</text>\n        <caption>IMAGES</caption>\n        <subtitle>Board photos &amp; charts</subtitle>\n      </targetStatCard>\n    </layout:row>\n    <layout:row>\n      <layout:column>\n        <targetStatCard>\n          <title href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_handwriting_space\">Handwriting Space</title>\n          <text>3</text>\n          <caption>PAGES</caption>\n          <subtitle>Venn diagrams &amp; notes</subtitle>\n        </targetStatCard>\n        <showcaseCard>\n          <title>数列的极限知识图谱</title>\n          <imageTextItem>\n            <image src=\"/images/mock_graph.jpeg\" alt=\"数列的极限知识图谱\" href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_knowledge_graph\"></image>\n          </imageTextItem>\n        </showcaseCard>\n        <textCard>\n          <text_title href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_class_notes\">Class Notes</text_title>\n          <text_subtitle>Source from 12 knowledge cards</text_subtitle>\n        </textCard>\n        <textCard>\n          <text_title>1. Definition of Functions</text_title>\n          <text_subtitle>AUDIO TRANSCRIPTION</text_subtitle>\n          <text_text>In mathematics, a **function** is a binary relation between two sets that associates every element of the first set to exactly one element of the second set. Typical examples are functions from integers to integers, or from the real numbers to real numbers.</text_text>\n        </textCard>\n      </layout:column>\n      <layout:column>\n        <confirmableCard>\n          <tag>HANDWRITTEN INSIGHT</tag>\n          <body>“Think of a function as a machine: you put an \"x\" in, and exactly one \"y\" comes out. If you get two different results for the same input, the machine is broken (not a function!)”</body>\n        </confirmableCard>\n        <textCard>\n          <text_title>2. Fundamental Properties</text_title>\n          <text_text>Functions exhibit various properties such as **monotonicity**, **parity** (even/odd), and **periodicity**.</text_text>\n        </textCard>\n        <summaryCard>\n          <title>BLACKBOARD PHOTO</title>\n          <topImage src=\"file:///sdcard/Pictures/Camera/camera_1786008203681.jpg\"></topImage>\n        </summaryCard>\n        <showcaseCard>\n          <subtitle>SLIDE KNOWLEDGE CARD</subtitle>\n          <title>Key Concept: Monotonicity</title>\n          <text>A function \\(f\\) is **increasing** on an interval \\(I\\) if for any two numbers \\(x_1\\), \\(x_2\\) in \\(I\\), \\(x_1 &lt; x_2\\) implies \\(f(x_1) &lt; f(x_2)\\).</text>\n        </showcaseCard>\n      </layout:column>\n    </layout:row>\n  </layout:column>\n</layout:root>\n"
+    },
+    {
+      "rank": 2,
+      "score": 4.24677,
+      "penalties": {
+        "overflow": 3.304972,
+        "too_narrow": 0.304443,
+        "aspect_ratio": 0.345688,
+        "excess_space": 0.0,
+        "complexity": 0.291667,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "column",
+        "children": [
+          {
+            "kind": "row",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 0
+              },
+              {
+                "kind": "card",
+                "cardIndex": 1
+              }
+            ]
+          },
+          {
+            "kind": "row",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 2
+              },
+              {
+                "kind": "card",
+                "cardIndex": 3
+              }
+            ]
+          },
+          {
+            "kind": "row",
+            "children": [
+              {
+                "kind": "column",
+                "children": [
+                  {
+                    "kind": "card",
+                    "cardIndex": 4
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 5
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 6
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 7
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 8
+                  }
+                ]
+              },
+              {
+                "kind": "column",
+                "children": [
+                  {
+                    "kind": "card",
+                    "cardIndex": 9
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 10
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 11
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:column>\n    <layout:row>\n      <textCard>\n        <text_title>Well done, class is over!</text_title>\n        <text_subtitle>Room 401 · Professor Zhang</text_subtitle>\n      </textCard>\n      <targetStatCard>\n        <title href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_transcription\">Transcription</title>\n        <text>01:24:30</text>\n        <caption>DURATION</caption>\n        <subtitle>Classroom audio</subtitle>\n      </targetStatCard>\n    </layout:row>\n    <layout:row>\n      <targetStatCard>\n        <title href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_related_files\">Related files</title>\n        <text>4</text>\n        <caption>FILES</caption>\n        <subtitle>Courseware Title Plan – Download the Latest</subtitle>\n      </targetStatCard>\n      <targetStatCard>\n        <title href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_smart_camera\">Smart Camera</title>\n        <text>32</text>\n        <caption>IMAGES</caption>\n        <subtitle>Board photos &amp; charts</subtitle>\n      </targetStatCard>\n    </layout:row>\n    <layout:row>\n      <layout:column>\n        <targetStatCard>\n          <title href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_handwriting_space\">Handwriting Space</title>\n          <text>3</text>\n          <caption>PAGES</caption>\n          <subtitle>Venn diagrams &amp; notes</subtitle>\n        </targetStatCard>\n        <showcaseCard>\n          <title>数列的极限知识图谱</title>\n          <imageTextItem>\n            <image src=\"/images/mock_graph.jpeg\" alt=\"数列的极限知识图谱\" href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_knowledge_graph\"></image>\n          </imageTextItem>\n        </showcaseCard>\n        <textCard>\n          <text_title href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_class_notes\">Class Notes</text_title>\n          <text_subtitle>Source from 12 knowledge cards</text_subtitle>\n        </textCard>\n        <textCard>\n          <text_title>1. Definition of Functions</text_title>\n          <text_subtitle>AUDIO TRANSCRIPTION</text_subtitle>\n          <text_text>In mathematics, a **function** is a binary relation between two sets that associates every element of the first set to exactly one element of the second set. Typical examples are functions from integers to integers, or from the real numbers to real numbers.</text_text>\n        </textCard>\n        <confirmableCard>\n          <tag>HANDWRITTEN INSIGHT</tag>\n          <body>“Think of a function as a machine: you put an \"x\" in, and exactly one \"y\" comes out. If you get two different results for the same input, the machine is broken (not a function!)”</body>\n        </confirmableCard>\n      </layout:column>\n      <layout:column>\n        <textCard>\n          <text_title>2. Fundamental Properties</text_title>\n          <text_text>Functions exhibit various properties such as **monotonicity**, **parity** (even/odd), and **periodicity**.</text_text>\n        </textCard>\n        <summaryCard>\n          <title>BLACKBOARD PHOTO</title>\n          <topImage src=\"file:///sdcard/Pictures/Camera/camera_1786008203681.jpg\"></topImage>\n        </summaryCard>\n        <showcaseCard>\n          <subtitle>SLIDE KNOWLEDGE CARD</subtitle>\n          <title>Key Concept: Monotonicity</title>\n          <text>A function \\(f\\) is **increasing** on an interval \\(I\\) if for any two numbers \\(x_1\\), \\(x_2\\) in \\(I\\), \\(x_1 &lt; x_2\\) implies \\(f(x_1) &lt; f(x_2)\\).</text>\n        </showcaseCard>\n      </layout:column>\n    </layout:row>\n  </layout:column>\n</layout:root>\n"
+    },
+    {
+      "rank": 3,
+      "score": 4.259722,
+      "penalties": {
+        "overflow": 3.392379,
+        "too_narrow": 0.30199,
+        "aspect_ratio": 0.273686,
+        "excess_space": 0.0,
+        "complexity": 0.291667,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "column",
+        "children": [
+          {
+            "kind": "card",
+            "cardIndex": 0
+          },
+          {
+            "kind": "row",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 1
+              },
+              {
+                "kind": "card",
+                "cardIndex": 2
+              }
+            ]
+          },
+          {
+            "kind": "row",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 3
+              },
+              {
+                "kind": "card",
+                "cardIndex": 4
+              }
+            ]
+          },
+          {
+            "kind": "row",
+            "children": [
+              {
+                "kind": "column",
+                "children": [
+                  {
+                    "kind": "card",
+                    "cardIndex": 5
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 6
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 7
+                  }
+                ]
+              },
+              {
+                "kind": "column",
+                "children": [
+                  {
+                    "kind": "card",
+                    "cardIndex": 8
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 9
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 10
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 11
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:column>\n    <textCard>\n      <text_title>Well done, class is over!</text_title>\n      <text_subtitle>Room 401 · Professor Zhang</text_subtitle>\n    </textCard>\n    <layout:row>\n      <targetStatCard>\n        <title href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_transcription\">Transcription</title>\n        <text>01:24:30</text>\n        <caption>DURATION</caption>\n        <subtitle>Classroom audio</subtitle>\n      </targetStatCard>\n      <targetStatCard>\n        <title href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_related_files\">Related files</title>\n        <text>4</text>\n        <caption>FILES</caption>\n        <subtitle>Courseware Title Plan – Download the Latest</subtitle>\n      </targetStatCard>\n    </layout:row>\n    <layout:row>\n      <targetStatCard>\n        <title href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_smart_camera\">Smart Camera</title>\n        <text>32</text>\n        <caption>IMAGES</caption>\n        <subtitle>Board photos &amp; charts</subtitle>\n      </targetStatCard>\n      <targetStatCard>\n        <title href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_handwriting_space\">Handwriting Space</title>\n        <text>3</text>\n        <caption>PAGES</caption>\n        <subtitle>Venn diagrams &amp; notes</subtitle>\n      </targetStatCard>\n    </layout:row>\n    <layout:row>\n      <layout:column>\n        <showcaseCard>\n          <title>数列的极限知识图谱</title>\n          <imageTextItem>\n            <image src=\"/images/mock_graph.jpeg\" alt=\"数列的极限知识图谱\" href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_knowledge_graph\"></image>\n          </imageTextItem>\n        </showcaseCard>\n        <textCard>\n          <text_title href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=after_class_class_notes\">Class Notes</text_title>\n          <text_subtitle>Source from 12 knowledge cards</text_subtitle>\n        </textCard>\n        <textCard>\n          <text_title>1. Definition of Functions</text_title>\n          <text_subtitle>AUDIO TRANSCRIPTION</text_subtitle>\n          <text_text>In mathematics, a **function** is a binary relation between two sets that associates every element of the first set to exactly one element of the second set. Typical examples are functions from integers to integers, or from the real numbers to real numbers.</text_text>\n        </textCard>\n      </layout:column>\n      <layout:column>\n        <confirmableCard>\n          <tag>HANDWRITTEN INSIGHT</tag>\n          <body>“Think of a function as a machine: you put an \"x\" in, and exactly one \"y\" comes out. If you get two different results for the same input, the machine is broken (not a function!)”</body>\n        </confirmableCard>\n        <textCard>\n          <text_title>2. Fundamental Properties</text_title>\n          <text_text>Functions exhibit various properties such as **monotonicity**, **parity** (even/odd), and **periodicity**.</text_text>\n        </textCard>\n        <summaryCard>\n          <title>BLACKBOARD PHOTO</title>\n          <topImage src=\"file:///sdcard/Pictures/Camera/camera_1786008203681.jpg\"></topImage>\n        </summaryCard>\n        <showcaseCard>\n          <subtitle>SLIDE KNOWLEDGE CARD</subtitle>\n          <title>Key Concept: Monotonicity</title>\n          <text>A function \\(f\\) is **increasing** on an interval \\(I\\) if for any two numbers \\(x_1\\), \\(x_2\\) in \\(I\\), \\(x_1 &lt; x_2\\) implies \\(f(x_1) &lt; f(x_2)\\).</text>\n        </showcaseCard>\n      </layout:column>\n    </layout:row>\n  </layout:column>\n</layout:root>\n"
+    }
+  ]
+}

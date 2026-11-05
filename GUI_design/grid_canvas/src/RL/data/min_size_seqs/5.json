@@ -1,0 +1,282 @@
+{
+  "id": "5",
+  "label": "手工标注",
+  "description": "8×5 手工标注",
+  "preset_id": "custom",
+  "grid": {
+    "cols": 8,
+    "rows": 5,
+    "width": 1936,
+    "height": 1144,
+    "label": "1936×1144（8×5 @228×216/16）",
+    "cell_w": 228,
+    "cell_h": 216,
+    "gap": 16
+  },
+  "sequence": "(8,1,0,0,textCard)(2,4,0,1,showcaseCard)(3,4,2,1,Topology)(3,1,5,1,targetStatCard)(3,1,5,2,mistakesCard)(3,1,5,3,mistakesCard)(3,1,5,4,mistakesCard)",
+  "n_cards": 7,
+  "area": 40,
+  "source_file": "handcrafted",
+  "schema_version": 3,
+  "card_queue": [
+    {
+      "id": "c0",
+      "type": "textCard",
+      "label": "textCard",
+      "color": "#5eb887",
+      "psuip": "<textCard>\n  <text_title>0714 Advanced Mathematics</text_title>\n  <text_subtitle>Room 401 · Professor Zhang</text_subtitle>\n</textCard>",
+      "min_w": 2,
+      "min_h": 1,
+      "min_size": {
+        "reachable": true,
+        "valid": true,
+        "start_w": 2,
+        "start_h": 1,
+        "tendency": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "card_name": "textCard",
+        "messages": [
+          "通过：无内容缺失"
+        ]
+      }
+    },
+    {
+      "id": "c1",
+      "type": "showcaseCard",
+      "label": "showcase",
+      "color": "#3d8bfd",
+      "psuip": "<showcaseCard>\n<title>Related files</title>\n<subtitle>4 Related Files</subtitle>\n<imageTextItem>\n<image src=\"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600\" alt=\"Lecture slides\"></image>\n    <title>Lecture Slides - Ch7</title>\n    <text>14MB · Sent by Professor Zhang</text>\n</imageTextItem>\n<commonListItem>\n  <icon>📄</icon>\n  <layout:column>\n    <title>Definite Integral Notes.docx</title>\n    <text>1.2MB · Sent by u0_a204</text>\n  </layout:column>\n</commonListItem>\n<commonListItem>\n  <icon>📊</icon>\n  <layout:column>\n    <title>Practice Problems.xlsx</title>\n    <text>856KB · Sent by u0_a204</text>\n  </layout:column>\n</commonListItem>\n<commonListItem>\n  <icon>📕</icon>\n  <layout:column>\n    <title>Midterm Review.pdf</title>\n    <text>2.3MB · Sent by u0_a204</text>\n  </layout:column>\n</commonListItem>\n<caption>4 Files · Courseware & Homework</caption>\n</showcaseCard>",
+      "min_w": 3,
+      "min_h": 3,
+      "min_size": {
+        "reachable": true,
+        "valid": true,
+        "start_w": 2,
+        "start_h": 1,
+        "tendency": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "card_name": "showcaseCard",
+        "messages": [
+          "通过：无内容缺失"
+        ]
+      }
+    },
+    {
+      "id": "c2",
+      "type": "Topology",
+      "label": "Topology",
+      "color": "#5c6bc0",
+      "psuip": "[Topology|title=导数与微分知识图谱]\n@@@\n{\n  \"nodes\": [\n    {\"id\":\"Chapter:导数与微分\",\"labels\":[\"Chapter\"],\"props\":{\"name\":\"导数与微分\"}},\n    {\"id\":\"Topic:导数的概念\",\"labels\":[\"Topic\"],\"props\":{\"name\":\"导数的概念\"}},\n    {\"id\":\"KP:导数的定义\",\"labels\":[\"KnowledgePoint\"],\"props\":{\"name\":\"导数的定义\"}}\n  ],\n  \"edges\": [\n    {\"id\":\"e1\",\"type\":\"HAS_TOPIC\",\"source\":\"Chapter:导数与微分\",\"target\":\"Topic:导数的概念\"},\n    {\"id\":\"e2\",\"type\":\"HAS_KP\",\"source\":\"Topic:导数的概念\",\"target\":\"KP:导数的定义\"}\n  ]\n}\n@@@",
+      "min_w": 1,
+      "min_h": 1,
+      "min_size": {
+        "reachable": true,
+        "valid": true,
+        "start_w": 1,
+        "start_h": 1,
+        "tendency": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "card_name": "",
+        "messages": [
+          "通过：无内容缺失"
+        ]
+      }
+    },
+    {
+      "id": "c3",
+      "type": "targetStatCard",
+      "label": "targetStat",
+      "color": "#e6a23c",
+      "psuip": "<targetStatCard>\n  <subtitle>FOR MAGGIE</subtitle>\n  <title>Master Calculus in 14 Days.</title>\n  <text>240</text>\n  <caption>TOTAL PROBLEMS</caption>\n  <button nativeEvent=\"click\" data=\"viewReport\">查看报告</button>\n</targetStatCard>",
+      "min_w": 2,
+      "min_h": 2,
+      "min_size": {
+        "reachable": true,
+        "valid": true,
+        "start_w": 2,
+        "start_h": 1,
+        "tendency": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "card_name": "targetStatCard",
+        "messages": [
+          "通过：无内容缺失"
+        ]
+      }
+    },
+    {
+      "id": "c4",
+      "type": "mistakesCard",
+      "label": "mistakes",
+      "color": "#d9776f",
+      "psuip": "<mistakesCard>\n<title>Weak Spots</title>\n<mistakesCardItem type=\"normal\">\n<title>Multivariable Calculus</title>\n<text>38% Mastery</text>\n<caption>12 Mistakes</caption>\n</mistakesCardItem>\n</mistakesCard>",
+      "min_w": 2,
+      "min_h": 2,
+      "min_size": {
+        "reachable": true,
+        "valid": true,
+        "start_w": 2,
+        "start_h": 1,
+        "tendency": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "card_name": "mistakesCard",
+        "messages": [
+          "通过：无内容缺失"
+        ]
+      }
+    },
+    {
+      "id": "c5",
+      "type": "mistakesCard",
+      "label": "mistakes",
+      "color": "#d9776f",
+      "psuip": "<mistakesCard>\n<title>Weak Spots</title>\n<mistakesCardItem type=\"normal\">\n<title>Multivariable Calculus</title>\n<text>38% Mastery</text>\n<caption>12 Mistakes</caption>\n</mistakesCardItem>\n</mistakesCard>",
+      "min_w": 2,
+      "min_h": 2,
+      "min_size": {
+        "reachable": true,
+        "valid": true,
+        "start_w": 2,
+        "start_h": 1,
+        "tendency": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "card_name": "mistakesCard",
+        "messages": [
+          "通过：无内容缺失"
+        ]
+      }
+    },
+    {
+      "id": "c6",
+      "type": "mistakesCard",
+      "label": "mistakes",
+      "color": "#d9776f",
+      "psuip": "<mistakesCard>\n<title>Weak Spots</title>\n<mistakesCardItem type=\"normal\">\n<title>Multivariable Calculus</title>\n<text>38% Mastery</text>\n<caption>12 Mistakes</caption>\n</mistakesCardItem>\n</mistakesCard>",
+      "min_w": 2,
+      "min_h": 2,
+      "min_size": {
+        "reachable": true,
+        "valid": true,
+        "start_w": 2,
+        "start_h": 1,
+        "tendency": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "card_name": "mistakesCard",
+        "messages": [
+          "通过：无内容缺失"
+        ]
+      }
+    }
+  ],
+  "expert_cards": [
+    {
+      "id": "c0",
+      "w": 8,
+      "h": 1,
+      "x": 0,
+      "y": 0
+    },
+    {
+      "id": "c1",
+      "w": 2,
+      "h": 4,
+      "x": 0,
+      "y": 1
+    },
+    {
+      "id": "c2",
+      "w": 3,
+      "h": 4,
+      "x": 2,
+      "y": 1
+    },
+    {
+      "id": "c3",
+      "w": 3,
+      "h": 1,
+      "x": 5,
+      "y": 1
+    },
+    {
+      "id": "c4",
+      "w": 3,
+      "h": 1,
+      "x": 5,
+      "y": 2
+    },
+    {
+      "id": "c5",
+      "w": 3,
+      "h": 1,
+      "x": 5,
+      "y": 3
+    },
+    {
+      "id": "c6",
+      "w": 3,
+      "h": 1,
+      "x": 5,
+      "y": 4
+    }
+  ],
+  "min_size_sequence": "(8,1,0,0,textCard,2x1)(2,4,0,1,showcaseCard,3x3)(3,4,2,1,Topology,1x1)(3,1,5,1,targetStatCard,2x2)(3,1,5,2,mistakesCard,2x2)(3,1,5,3,mistakesCard,2x2)(3,1,5,4,mistakesCard,2x2)",
+  "min_size_grid": {
+    "cols": 8,
+    "rows": 5
+  }
+}

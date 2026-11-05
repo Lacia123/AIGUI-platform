@@ -1,6 +1,6 @@
 /**
  * 与 docx/CARD_REFERENCE.md §0 对齐的 card 类型名与默认色。
- * Slab ×8 + 透传伪卡（table / rawMarkdown / Topology）。
+ * Slab ×9 + 透传伪卡（table / rawMarkdown / Topology）。
  */
 export const SLAB_CARD_TYPES = [
   'targetStatCard',
@@ -11,6 +11,7 @@ export const SLAB_CARD_TYPES = [
   'commonStyleServiceListDesc',
   'pairedImageTextCard',
   'heroCard',
+  'contentSummaryCard',
 ] as const
 
 export const PASSTHROUGH_CARD_TYPES = [
@@ -32,6 +33,7 @@ export const CARD_TYPE_COLORS: Record<SupportedCardType, string> = {
   commonStyleServiceListDesc: '#6b8cae',
   pairedImageTextCard: '#4a90a4',
   heroCard: '#2aa8a0',
+  contentSummaryCard: '#c4785a',
   '[table:commonStyle]': '#8a7a5c',
   __rawMarkdown__: '#7a8b9a',
   Topology: '#5c6bc0',

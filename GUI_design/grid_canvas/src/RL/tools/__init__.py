@@ -3,6 +3,7 @@
 from .layout_format import (
     LayoutCard,
     LayoutFormatError,
+    ParseLayoutResult,
     parse_layout_sequence,
     stringify_layout_sequence,
 )
@@ -10,6 +11,7 @@ from .layout_format import (
 __all__ = [
     "LayoutCard",
     "LayoutFormatError",
+    "ParseLayoutResult",
     "parse_layout_sequence",
     "stringify_layout_sequence",
 ]

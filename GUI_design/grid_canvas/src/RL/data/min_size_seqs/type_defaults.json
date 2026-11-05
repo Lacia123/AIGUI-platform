@@ -1,0 +1,18 @@
+{
+  "description": "各 card type 样例文本在 8×5 上界下的最小展示尺寸，用作标注页组件库默认格数。",
+  "grid": "8x5",
+  "defaults": {
+    "textCard": { "w": 2, "h": 1 },
+    "targetStatCard": { "w": 1, "h": 2 },
+    "showcaseCard": { "w": 3, "h": 3 },
+    "summaryCard": { "w": 2, "h": 1 },
+    "contentSummaryCard": { "w": 2, "h": 2 },
+    "mistakesCard": { "w": 1, "h": 2 },
+    "commonStyleServiceListDesc": { "w": 2, "h": 1 },
+    "heroCard": { "w": 2, "h": 2 },
+    "pairedImageTextCard": { "w": 3, "h": 3 },
+    "__rawMarkdown__": { "w": 1, "h": 2 },
+    "Topology": { "w": 1, "h": 1 },
+    "[table:commonStyle]": { "w": 2, "h": 2 }
+  }
+}

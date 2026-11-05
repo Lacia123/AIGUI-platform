@@ -1,0 +1,31 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Node
+node_modules/
+dist/
+.vite/
+*.local
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# RL trained model checkpoints (large binaries)
+GUI_design/grid_canvas/src/RL/Model/**/*.zip
+GUI_design/grid_canvas/src/RL/Model/**/*.pt
+GUI_design/grid_canvas/src/RL/Model/**/*.pth
+GUI_design/grid_canvas/src/RL/Model/**/*.onnx
+GUI_design/grid_canvas/src/RL/_tmp_*.json
+
+# Logs / caches
+*.log
+.cache/

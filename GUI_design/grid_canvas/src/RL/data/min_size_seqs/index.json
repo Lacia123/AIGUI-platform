@@ -1,0 +1,49 @@
+{
+  "grid": "8x5",
+  "n_episodes": 6,
+  "jsonl": "handcrafted_8x5.min_size.jsonl",
+  "episodes": [
+    {
+      "id": "1",
+      "n_cards": 9,
+      "file": "1.json",
+      "min_size_sequence": "(8,1,0,0,textCard,2x1)(2,1,0,1,targetStatCard,2x2)(2,1,2,1,targetStatCard,2x2)(2,1,4,1,targetStatCard,2x2)(2,1,6,1,targetStatCard,2x2)(2,3,0,2,showcaseCard,3x3)(2,1,2,2,showcaseCard,3x3)(4,3,4,2,contentSummaryCard,2x2)(2,2,2,3,contentSummaryCard,2x2)",
+      "ok": true
+    },
+    {
+      "id": "2",
+      "n_cards": 7,
+      "file": "2.json",
+      "min_size_sequence": "(8,1,0,0,textCard,2x1)(2,4,0,1,showcaseCard,3x3)(2,1,2,1,targetStatCard,2x2)(2,1,4,1,targetStatCard,2x2)(2,1,6,1,targetStatCard,2x2)(3,3,2,2,Topology,1x1)(3,3,5,2,contentSummaryCard,2x2)",
+      "ok": true
+    },
+    {
+      "id": "3",
+      "n_cards": 9,
+      "file": "3.json",
+      "min_size_sequence": "(8,1,0,0,textCard,2x1)(2,4,0,1,showcaseCard,3x3)(2,1,2,1,targetStatCard,2x2)(2,1,4,1,targetStatCard,2x2)(2,1,6,1,targetStatCard,2x2)(3,3,2,2,__rawMarkdown__,1x2)(3,1,5,2,mistakesCard,2x2)(3,1,5,3,mistakesCard,2x2)(3,1,5,4,mistakesCard,2x2)",
+      "ok": true
+    },
+    {
+      "id": "5",
+      "n_cards": 7,
+      "file": "5.json",
+      "min_size_sequence": "(8,1,0,0,textCard,2x1)(2,4,0,1,showcaseCard,3x3)(3,4,2,1,Topology,1x1)(3,1,5,1,targetStatCard,2x2)(3,1,5,2,mistakesCard,2x2)(3,1,5,3,mistakesCard,2x2)(3,1,5,4,mistakesCard,2x2)",
+      "ok": true
+    },
+    {
+      "id": "7",
+      "n_cards": 8,
+      "file": "7.json",
+      "min_size_sequence": "(8,1,0,0,textCard,2x1)(2,4,0,1,showcaseCard,3x3)(3,1,2,1,targetStatCard,2x2)(3,1,5,1,targetStatCard,2x2)(3,3,2,2,contentSummaryCard,2x2)(3,1,5,2,mistakesCard,2x2)(3,1,5,3,mistakesCard,2x2)(3,1,5,4,mistakesCard,2x2)",
+      "ok": true
+    },
+    {
+      "id": "1-1",
+      "n_cards": 7,
+      "file": "1-1.json",
+      "min_size_sequence": "(8,1,0,0,textCard,2x1)(3,4,0,1,showcaseCard,3x3)(3,4,3,1,__rawMarkdown__,1x2)(2,1,6,1,targetStatCard,2x2)(2,1,6,2,targetStatCard,2x2)(2,1,6,3,targetStatCard,2x2)(2,1,6,4,targetStatCard,2x2)",
+      "ok": true
+    }
+  ]
+}

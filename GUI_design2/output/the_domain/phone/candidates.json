@@ -1,0 +1,150 @@
+{
+  "canvas": {
+    "width": 390,
+    "height": 844,
+    "gap": 16.0
+  },
+  "cardCount": 5,
+  "candidates": [
+    {
+      "rank": 1,
+      "score": 0.967125,
+      "penalties": {
+        "overflow": 0.54521,
+        "too_narrow": 0.0,
+        "aspect_ratio": 0.281915,
+        "excess_space": 0.0,
+        "complexity": 0.14,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "column",
+        "children": [
+          {
+            "kind": "card",
+            "cardIndex": 0
+          },
+          {
+            "kind": "card",
+            "cardIndex": 1
+          },
+          {
+            "kind": "row",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 2
+              },
+              {
+                "kind": "card",
+                "cardIndex": 3
+              }
+            ]
+          },
+          {
+            "kind": "card",
+            "cardIndex": 4
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:column>\n    <textCard>\n      <text_title>The Domain</text_title>\n      <text_subtitle>Think of it as the \"Guest List\" for your function. If you're not on the list, you can't get in.</text_subtitle>\n    </textCard>\n    <textCard>\n      <text_title>CORE DEFINITION</text_title>\n      <text_text>The complete set of all possible **input values** (usually \\(x\\)) for which the function is defined.</text_text>\n      <text_subtitle>⏱ Also known as the \"Independent Variables\".</text_subtitle>\n    </textCard>\n    <layout:row>\n      <summaryCard>\n        <title>Visualizing Domain: \\(f(x) = \\sqrt{x}\\)</title>\n        <preview src=\"file:///sdcard/Pictures/Camera/camera_1786008139046.jpg\"></preview>\n        <text>Allowed Inputs (Domain): \\([0, \\infty)\\)</text>\n      </summaryCard>\n      <summaryCard>\n        <title>The Input-Output Rule</title>\n        <text>Every function has boundaries. The Domain ensures the math stays \"real\" and avoids errors like dividing by zero.</text>\n        <preview src=\"file:///sdcard/Pictures/Camera/camera_1786008203681.jpg\"></preview>\n        <commitWide href=\"https://example.com/learn/domain/self-test\">Knowledge Self-Test</commitWide>\n      </summaryCard>\n    </layout:row>\n    <heroCard>\n      <cta_secondary href=\"https://example.com/learn/domain/mastered\">Mastered</cta_secondary>\n      <cta_primary href=\"https://example.com/learn/domain/self-test\">Knowledge Self-Test</cta_primary>\n    </heroCard>\n  </layout:column>\n</layout:root>\n"
+    },
+    {
+      "rank": 2,
+      "score": 1.084481,
+      "penalties": {
+        "overflow": 0.722023,
+        "too_narrow": 0.005887,
+        "aspect_ratio": 0.216571,
+        "excess_space": 0.0,
+        "complexity": 0.14,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "column",
+        "children": [
+          {
+            "kind": "card",
+            "cardIndex": 0
+          },
+          {
+            "kind": "row",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 1
+              },
+              {
+                "kind": "card",
+                "cardIndex": 2
+              }
+            ]
+          },
+          {
+            "kind": "card",
+            "cardIndex": 3
+          },
+          {
+            "kind": "card",
+            "cardIndex": 4
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:column>\n    <textCard>\n      <text_title>The Domain</text_title>\n      <text_subtitle>Think of it as the \"Guest List\" for your function. If you're not on the list, you can't get in.</text_subtitle>\n    </textCard>\n    <layout:row>\n      <textCard>\n        <text_title>CORE DEFINITION</text_title>\n        <text_text>The complete set of all possible **input values** (usually \\(x\\)) for which the function is defined.</text_text>\n        <text_subtitle>⏱ Also known as the \"Independent Variables\".</text_subtitle>\n      </textCard>\n      <summaryCard>\n        <title>Visualizing Domain: \\(f(x) = \\sqrt{x}\\)</title>\n        <preview src=\"file:///sdcard/Pictures/Camera/camera_1786008139046.jpg\"></preview>\n        <text>Allowed Inputs (Domain): \\([0, \\infty)\\)</text>\n      </summaryCard>\n    </layout:row>\n    <summaryCard>\n      <title>The Input-Output Rule</title>\n      <text>Every function has boundaries. The Domain ensures the math stays \"real\" and avoids errors like dividing by zero.</text>\n      <preview src=\"file:///sdcard/Pictures/Camera/camera_1786008203681.jpg\"></preview>\n      <commitWide href=\"https://example.com/learn/domain/self-test\">Knowledge Self-Test</commitWide>\n    </summaryCard>\n    <heroCard>\n      <cta_secondary href=\"https://example.com/learn/domain/mastered\">Mastered</cta_secondary>\n      <cta_primary href=\"https://example.com/learn/domain/self-test\">Knowledge Self-Test</cta_primary>\n    </heroCard>\n  </layout:column>\n</layout:root>\n"
+    },
+    {
+      "rank": 3,
+      "score": 1.180973,
+      "penalties": {
+        "overflow": 0.812232,
+        "too_narrow": 0.0169,
+        "aspect_ratio": 0.071841,
+        "excess_space": 0.0,
+        "complexity": 0.28,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "column",
+        "children": [
+          {
+            "kind": "row",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 0
+              },
+              {
+                "kind": "column",
+                "children": [
+                  {
+                    "kind": "card",
+                    "cardIndex": 1
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 2
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "card",
+            "cardIndex": 3
+          },
+          {
+            "kind": "card",
+            "cardIndex": 4
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:column>\n    <layout:row>\n      <textCard>\n        <text_title>The Domain</text_title>\n        <text_subtitle>Think of it as the \"Guest List\" for your function. If you're not on the list, you can't get in.</text_subtitle>\n      </textCard>\n      <layout:column>\n        <textCard>\n          <text_title>CORE DEFINITION</text_title>\n          <text_text>The complete set of all possible **input values** (usually \\(x\\)) for which the function is defined.</text_text>\n          <text_subtitle>⏱ Also known as the \"Independent Variables\".</text_subtitle>\n        </textCard>\n        <summaryCard>\n          <title>Visualizing Domain: \\(f(x) = \\sqrt{x}\\)</title>\n          <preview src=\"file:///sdcard/Pictures/Camera/camera_1786008139046.jpg\"></preview>\n          <text>Allowed Inputs (Domain): \\([0, \\infty)\\)</text>\n        </summaryCard>\n      </layout:column>\n    </layout:row>\n    <summaryCard>\n      <title>The Input-Output Rule</title>\n      <text>Every function has boundaries. The Domain ensures the math stays \"real\" and avoids errors like dividing by zero.</text>\n      <preview src=\"file:///sdcard/Pictures/Camera/camera_1786008203681.jpg\"></preview>\n      <commitWide href=\"https://example.com/learn/domain/self-test\">Knowledge Self-Test</commitWide>\n    </summaryCard>\n    <heroCard>\n      <cta_secondary href=\"https://example.com/learn/domain/mastered\">Mastered</cta_secondary>\n      <cta_primary href=\"https://example.com/learn/domain/self-test\">Knowledge Self-Test</cta_primary>\n    </heroCard>\n  </layout:column>\n</layout:root>\n"
+    }
+  ]
+}

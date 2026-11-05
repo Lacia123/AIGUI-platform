@@ -1,0 +1,80 @@
+<card:headerCard>
+## 0714 Advanced Mathematics
+Room 401 · Professor Zhang
+</card:headerCard>
+
+
+<showcaseCard>
+<title>Related files</title>
+<subtitle>4 Related Files</subtitle>
+<imageTextItem>
+<image src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600" alt="Lecture slides"></image>
+    <title>Lecture Slides - Ch7</title>
+    <text>14MB · Sent by Professor Zhang</text>
+</imageTextItem>
+<commonListItem>
+  <icon>📄</icon>
+  <layout:column>
+    <title>Definite Integral Notes.docx</title>
+    <text>1.2MB · Sent by u0_a204</text>
+  </layout:column>
+</commonListItem>
+<commonListItem>
+  <icon>📊</icon>
+  <layout:column>
+    <title>Practice Problems.xlsx</title>
+    <text>856KB · Sent by u0_a204</text>
+  </layout:column>
+</commonListItem>
+<commonListItem>
+  <icon>📕</icon>
+  <layout:column>
+    <title>Midterm Review.pdf</title>
+    <text>2.3MB · Sent by u0_a204</text>
+  </layout:column>
+</commonListItem>
+<caption>4 Files · Courseware & Homework</caption>
+</showcaseCard>
+
+
+<!-- 中上：Transcription，占 2×2 -->
+
+<showcaseCard>
+<title>Transcription</title>
+<toggle></toggle>
+<text>Today's lecture covered Bayes' theorem, conditional probability, and the law of total probability. The professor worked through several whiteboard examples.</text>
+<loading></loading>
+<button>✦ View AI Summary</button>
+</showcaseCard>
+
+
+<!-- 中下：Smart Camera，contentSummaryCard 单图摘要，占 2×2 -->
+
+<contentSummaryCard>
+  <coverImage src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=800&h=600" alt="Whiteboard capture"></coverImage>
+  <title>Smart Camera</title>
+  <description>4 Images captured · Whiteboard 1: Bayes' theorem proof</description>
+  <primaryAction>查看全部 4 张</primaryAction>
+</contentSummaryCard>
+
+
+<!-- 右上：Knowledge card，contentSummaryCard 单图摘要，占 4×2 -->
+
+<contentSummaryCard>
+  <coverImage src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&h=600" alt="Knowledge card cover"></coverImage>
+  <title>Knowledge card</title>
+  <description>12 cards · 课堂公式速查 · Bayes' Theorem: P(A|B) = P(B|A)·P(A)/P(B)</description>
+  <primaryAction>查看全部卡片</primaryAction>
+</contentSummaryCard>
+
+
+<!-- 右下：Handwriting space，contentSummaryCard 封面图文，占 4×2（与上区等高，1:1） -->
+
+<contentSummaryCard>
+  <coverImage src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=800&h=600" alt="Handwriting notes"></coverImage>
+  <title>Handwriting space</title>
+  <description>板书推导：条件概率与全概率公式。P(A∩B) = P(A) · P(B|A)</description>
+  <primaryAction>查看过程</primaryAction>
+</contentSummaryCard>
+</grid:item>
+

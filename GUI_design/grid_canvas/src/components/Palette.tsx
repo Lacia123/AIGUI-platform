@@ -18,7 +18,7 @@ export function Palette({ items }: Props) {
   return (
     <aside className="palette">
       <h2>组件库</h2>
-      <p className="hint">类型对齐 CARD_REFERENCE（Slab ×8 + 透传）。拖到画布吸附网格，双击删除。</p>
+      <p className="hint">类型对齐 CARD_REFERENCE（Slab ×9 + 透传）。拖到画布吸附网格，双击删除。</p>
       <ul>
         {items.map((item) => (
           <li key={item.type}>

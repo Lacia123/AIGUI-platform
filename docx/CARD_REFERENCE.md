@@ -16,7 +16,7 @@
 
 | 类别 | card | 说明 |
 |------|------|------|
-| Slab ×8 | `targetStatCard` · `mistakesCard` · `showcaseCard` · `summaryCard` · `textCard` · `commonStyleServiceListDesc` · `pairedImageTextCard` · `heroCard` | 进 L3 填槽 RL 的组件卡 |
+| Slab ×9 | `targetStatCard` · `mistakesCard` · `showcaseCard` · `summaryCard` · `textCard` · `commonStyleServiceListDesc` · `pairedImageTextCard` · `heroCard` · `contentSummaryCard` | 进 L3 填槽 RL 的组件卡 |
 | 透传 | `[table:commonStyle]` | 表格独占块；**无槽可填**，围栏 + 表原样输出，不进填槽 RL |
 | 透传 | `__rawMarkdown__` | 复杂块原样 Markdown；对应 mode `markdown_passthrough` |
 | 透传 | `Topology` | 知识图谱独占块；**独立 card**，不并入 `__rawMarkdown__`，也不占 RL mode 维 |
@@ -25,7 +25,9 @@
 
 ---
 
-## 1. 动作空间总表（12 个 mode → 8 种 Slab 卡 + 表格透传 + Markdown 透传）
+## 1. 动作空间总表（12 个 mode → Slab 组件卡 + 表格透传 + Markdown 透传）
+
+> `contentSummaryCard` 已列入 §0 Slab 词表；本表 mode 维暂未单独占位，布局 RL 经 `card_types.TYPE_NAMES` 识别。
 
 | id | mode | card | layout | 典型用途 |
 |----|------|------|--------|----------|
@@ -164,6 +166,19 @@
 要点：`commit` 与 `commitWide` 互斥；`topImage` 与 `backgroundImage` 互斥。
 
 来源：`RL_env/slab-comp.txt`
+
+---
+
+### 3.4.1 `contentSummaryCard`
+
+内容摘要卡（与 `summaryCard` 区分：偏正文/要点汇总，而非带图摘要条）。
+
+```xml
+<contentSummaryCard>
+  <title>本节要点</title>
+  <text>关键概念与适用边界……</text>
+</contentSummaryCard>
+```
 
 ---
 
@@ -327,6 +342,7 @@ When $f(x) = 0$, the equation is homogeneous.
 | `mistakesCard` | title + `mistakesCardItem_{sev}_{field}` |
 | `showcaseCard` | title/subtitle/caption/preview/… + list 子槽 |
 | `summaryCard` | title, text, commit/commitWide, topImage, … |
+| `contentSummaryCard` | title, text, … |
 | `textCard` | text_title, text_subtitle, text_text, cta |
 | `commonStyleServiceListDesc` | icon, title, desc |
 | `[table:commonStyle]` | 无组件槽；整块原文透传（`[table:commonStyle]` 围栏 + 表） |

@@ -1,0 +1,66 @@
+{
+  "canvas": {
+    "width": 390,
+    "height": 844,
+    "gap": 16.0
+  },
+  "cardCount": 2,
+  "candidates": [
+    {
+      "rank": 1,
+      "score": 0.089203,
+      "penalties": {
+        "overflow": 0.0,
+        "too_narrow": 0.0,
+        "aspect_ratio": 0.089203,
+        "excess_space": 0.0,
+        "complexity": 0.0,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "column",
+        "children": [
+          {
+            "kind": "card",
+            "cardIndex": 0
+          },
+          {
+            "kind": "card",
+            "cardIndex": 1
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:column>\n    <summaryCard>\n      <title>Advanced Calculus</title>\n      <text>QUICK REFERENCE CARD</text>\n      <topImage src=\"file:///sdcard/Pictures/Camera/20260806/20260806201148.jpg\"></topImage>\n    </summaryCard>\n    [table:commonStyle]\n    | | |\n    |---|---|\n    | Subject | Mathematical Analysis |\n    | Core Unit | Functions & Limits |\n    | Complexity | ●●●○○ |\n    | Sources | 4 Integrated Assets |\n  </layout:column>\n</layout:root>\n"
+    },
+    {
+      "rank": 2,
+      "score": 9.212463,
+      "penalties": {
+        "overflow": 0.0,
+        "too_narrow": 0.452323,
+        "aspect_ratio": 5.442246,
+        "excess_space": 0.067894,
+        "complexity": 0.0,
+        "depth": 0.0,
+        "row_mismatch": 1.25,
+        "mobile_row_root": 2.0
+      },
+      "layout": {
+        "kind": "row",
+        "children": [
+          {
+            "kind": "card",
+            "cardIndex": 0
+          },
+          {
+            "kind": "card",
+            "cardIndex": 1
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:row>\n    <summaryCard>\n      <title>Advanced Calculus</title>\n      <text>QUICK REFERENCE CARD</text>\n      <topImage src=\"file:///sdcard/Pictures/Camera/20260806/20260806201148.jpg\"></topImage>\n    </summaryCard>\n    [table:commonStyle]\n    | | |\n    |---|---|\n    | Subject | Mathematical Analysis |\n    | Core Unit | Functions & Limits |\n    | Complexity | ●●●○○ |\n    | Sources | 4 Integrated Assets |\n  </layout:row>\n</layout:root>\n"
+    }
+  ]
+}

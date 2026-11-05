@@ -1,0 +1,172 @@
+{
+  "canvas": {
+    "width": 1280,
+    "height": 800,
+    "gap": 16.0
+  },
+  "cardCount": 6,
+  "candidates": [
+    {
+      "rank": 1,
+      "score": 0.237565,
+      "penalties": {
+        "overflow": 0.0,
+        "too_narrow": 0.0,
+        "aspect_ratio": 0.004232,
+        "excess_space": 0.0,
+        "complexity": 0.233333,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "row",
+        "children": [
+          {
+            "kind": "column",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 0
+              },
+              {
+                "kind": "card",
+                "cardIndex": 1
+              },
+              {
+                "kind": "card",
+                "cardIndex": 2
+              }
+            ]
+          },
+          {
+            "kind": "column",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 3
+              },
+              {
+                "kind": "card",
+                "cardIndex": 4
+              },
+              {
+                "kind": "card",
+                "cardIndex": 5
+              }
+            ]
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:row>\n    <layout:column>\n      <textCard>\n        <text_title>CONTENTS</text_title>\n      </textCard>\n      <commonStyleServiceList>\n        <icon>1</icon>\n        <title>Definition of Functions</title>\n      </commonStyleServiceList>\n      <commonStyleServiceList>\n        <icon>2</icon>\n        <title>Fundamental Properties</title>\n      </commonStyleServiceList>\n    </layout:column>\n    <layout:column>\n      <commonStyleServiceList>\n        <icon>3</icon>\n        <title>Practical Applications</title>\n      </commonStyleServiceList>\n      <commonStyleServiceList>\n        <icon>4</icon>\n        <title>Visual Data Analysis</title>\n      </commonStyleServiceList>\n      <heroCard>\n        <title>SOURCE LEGEND</title>\n        <metrics>🔵 Lecture Audio</metrics>\n        <metrics>🟣 Blackboard Photo</metrics>\n        <metrics>🟠 Handwritten Note</metrics>\n        <metrics>🟢 Slide Card</metrics>\n      </heroCard>\n    </layout:column>\n  </layout:row>\n</layout:root>\n"
+    },
+    {
+      "rank": 2,
+      "score": 0.294573,
+      "penalties": {
+        "overflow": 0.0,
+        "too_narrow": 0.0,
+        "aspect_ratio": 0.061239,
+        "excess_space": 0.0,
+        "complexity": 0.233333,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "row",
+        "children": [
+          {
+            "kind": "column",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 0
+              },
+              {
+                "kind": "card",
+                "cardIndex": 1
+              },
+              {
+                "kind": "card",
+                "cardIndex": 2
+              },
+              {
+                "kind": "card",
+                "cardIndex": 3
+              }
+            ]
+          },
+          {
+            "kind": "column",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 4
+              },
+              {
+                "kind": "card",
+                "cardIndex": 5
+              }
+            ]
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:row>\n    <layout:column>\n      <textCard>\n        <text_title>CONTENTS</text_title>\n      </textCard>\n      <commonStyleServiceList>\n        <icon>1</icon>\n        <title>Definition of Functions</title>\n      </commonStyleServiceList>\n      <commonStyleServiceList>\n        <icon>2</icon>\n        <title>Fundamental Properties</title>\n      </commonStyleServiceList>\n      <commonStyleServiceList>\n        <icon>3</icon>\n        <title>Practical Applications</title>\n      </commonStyleServiceList>\n    </layout:column>\n    <layout:column>\n      <commonStyleServiceList>\n        <icon>4</icon>\n        <title>Visual Data Analysis</title>\n      </commonStyleServiceList>\n      <heroCard>\n        <title>SOURCE LEGEND</title>\n        <metrics>🔵 Lecture Audio</metrics>\n        <metrics>🟣 Blackboard Photo</metrics>\n        <metrics>🟠 Handwritten Note</metrics>\n        <metrics>🟢 Slide Card</metrics>\n      </heroCard>\n    </layout:column>\n  </layout:row>\n</layout:root>\n"
+    },
+    {
+      "rank": 3,
+      "score": 0.311894,
+      "penalties": {
+        "overflow": 0.0,
+        "too_narrow": 0.0,
+        "aspect_ratio": 0.043966,
+        "excess_space": 0.034595,
+        "complexity": 0.233333,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "row",
+        "children": [
+          {
+            "kind": "card",
+            "cardIndex": 0
+          },
+          {
+            "kind": "column",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 1
+              },
+              {
+                "kind": "card",
+                "cardIndex": 2
+              }
+            ]
+          },
+          {
+            "kind": "column",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 3
+              },
+              {
+                "kind": "card",
+                "cardIndex": 4
+              },
+              {
+                "kind": "card",
+                "cardIndex": 5
+              }
+            ]
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:row>\n    <textCard>\n      <text_title>CONTENTS</text_title>\n    </textCard>\n    <layout:column>\n      <commonStyleServiceList>\n        <icon>1</icon>\n        <title>Definition of Functions</title>\n      </commonStyleServiceList>\n      <commonStyleServiceList>\n        <icon>2</icon>\n        <title>Fundamental Properties</title>\n      </commonStyleServiceList>\n    </layout:column>\n    <layout:column>\n      <commonStyleServiceList>\n        <icon>3</icon>\n        <title>Practical Applications</title>\n      </commonStyleServiceList>\n      <commonStyleServiceList>\n        <icon>4</icon>\n        <title>Visual Data Analysis</title>\n      </commonStyleServiceList>\n      <heroCard>\n        <title>SOURCE LEGEND</title>\n        <metrics>🔵 Lecture Audio</metrics>\n        <metrics>🟣 Blackboard Photo</metrics>\n        <metrics>🟠 Handwritten Note</metrics>\n        <metrics>🟢 Slide Card</metrics>\n      </heroCard>\n    </layout:column>\n  </layout:row>\n</layout:root>\n"
+    }
+  ]
+}

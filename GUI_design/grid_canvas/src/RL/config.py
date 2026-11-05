@@ -1,7 +1,7 @@
 """训练超参与路径常量。
 
-改学习率、奖励权重、画布上界等训练行为时优先编辑本文件。
-权重含义见各常量旁注释；奖励计算公式见 reward.py。
+改学习率、画布上界等训练行为时优先编辑本文件。
+奖励在 reward.py 中重写。
 """
 
 from __future__ import annotations
@@ -11,89 +11,163 @@ from pathlib import Path
 
 PKG_ROOT = Path(__file__).resolve().parent
 DATA_DIR = PKG_ROOT / "data"
+TEST_DATA_DIR = DATA_DIR / "test_data"
 MODEL_SAVE_PATH = PKG_ROOT / "Model"
 
-# 数据：design = design_mockups.jsonl；sample = sample_layouts.jsonl
-# 训练只用 SOURCE；训练结束后还会额外评估 EVAL_EXTRA_SOURCES
-SOURCE = "design"
-# 训练结束后追加评估的数据源；classic = sample 中非 design- 的经典布局
-EVAL_EXTRA_SOURCES = ("classic",)
+# 数据：训练用随机画布 synth；结束后额外评估手工页和 testdata
+SOURCE = "synth"
+# 合成数据含多种网格，不按单一尺寸过滤。
+TRAIN_GRID: tuple[int, int] | None = None
+# 训练结束后额外评估 held-out。
+EVAL_EXTRA_SOURCES: tuple[str, ...] = ("handcrafted", "testdata")
+
+# test_model 默认评估源 / 切分。命令行 --source / --split 会覆盖。
+# all / sample / handcrafted / psuip / design / testdata（data/test_data/*.jsonl）
+TEST_SOURCE = SOURCE
+TEST_SPLIT = "all"
 
 # 环境固定张量尺寸（不同分辨率 episode 做 padding）
-# 对齐默认 80 单位格 + 16 gap：dashboard 19×7、tablet 8×10 为当前上界
-MAX_COLS = 19
-MAX_ROWS = 10
+# 覆盖官方预设及现有 handcrafted：最大 8×5 / 3×6。
+MAX_COLS = 8
+MAX_ROWS = 6
 MAX_CARDS = 32
 # 单卡 w/h 动作上界（格数，1-indexed）；与画布 MAX_COLS/MAX_ROWS 对齐
 MAX_CARD_W = MAX_COLS
 MAX_CARD_H = MAX_ROWS
 MAX_INVALID_STREAK = 20
 
-
 def action_space_size(
-    max_cols: int = MAX_COLS,
-    max_rows: int = MAX_ROWS,
     max_card_w: int = MAX_CARD_W,
     max_card_h: int = MAX_CARD_H,
 ) -> int:
-    """计算离散动作空间大小（编码维度，非合法动作数）。
+    """计算仅含卡片宽高的离散动作空间大小。
 
     输入:
-        max_cols, max_rows: 动作编码用的画布上界（与观测 padding 一致）。
         max_card_w, max_card_h: 单卡宽高动作上界（1-indexed 格数）。
     输出:
-        max_cols * max_rows * max_card_w * max_card_h。
+        max_card_w * max_card_h。
     逻辑:
-        每个整数 action 对应一组 (x,y,w,h)；实际合法组合由 action_masks 过滤。
+        每个整数 action 只对应一组 (w,h)；(x,y) 由环境的左上空白锚点确定。
     """
-    return max_cols * max_rows * max_card_w * max_card_h
+    return max_card_w * max_card_h
 
-# 合法性奖励
-LEGAL_VALID_REWARD = 0.2
-LEGAL_INVALID_PENALTY = -1.0
-REWARD_SUCCESS = 10.0
-REWARD_FAIL = -5.0
-REWARD_DENSITY = 2.0
+# 内容尺寸校验（同一本地服务上的两个接口，见 layout_check.py）
+LAYOUT_CHECK_ENABLED = True
+LAYOUT_CHECK_URL = "http://localhost:3001/api/markdown-layout-check"
+GRID_GROWTH_CHECK_URL = "http://localhost:3001/api/markdown-grid-growth-check"
+LAYOUT_CHECK_TIMEOUT = 15.0
 
-# 样式奖励
-# edge: 鼓励新卡与已放卡共享边缘，减少零散布局
-# alignment: 鼓励卡片的左/右/上/下边缘形成对齐线
-# parallel: 鼓励尺寸相似的卡紧邻并列且边缘对齐
-# order: 鼓励先放的块偏左上、后放的块偏右下（阅读顺序）
-# origin: 鼓励第一块落在 (0,0)
-# prev_adjacent: 按放置序号，第 k 块应紧贴第 k-1 块，避免散落
-STYLE_EDGE_WEIGHT = 0.6
-STYLE_ALIGNMENT_WEIGHT = 0.4
-STYLE_PARALLEL_WEIGHT = 0.8
-STYLE_ORDER_WEIGHT = 0.5
-STYLE_ORIGIN_WEIGHT = 3
-STYLE_PREV_ADJACENT_WEIGHT = 1.5
-# imitation: 贴近设计稿专家坐标，复杂布局关键
-IMITATION_WEIGHT = 0
-# 放置后剩余卡贪心不可行时的惩罚
-PACKABILITY_PENALTY = -1.5
-STYLE_SIMILARITY_THRESHOLD = 0.75
-
-# 难例加权采样：卡多 / tablet 布局训练更频繁
+# 难例加权采样：卡多 / phone|tablet 小屏布局训练更频繁
 HARD_EPISODE_MIN_CARDS = 7
 HARD_EPISODE_WEIGHT = 3.0
+# 再按 (cols, rows) 稀有度加权；用 1/sqrt(count) 并设上限，避免 3×6 过度放大
+RARE_GRID_WEIGHT = True
+RARE_GRID_SQRT = True
+RARE_GRID_WEIGHT_CAP = 5.0
+# 同页同类型异尺寸 / 历史易堵死样本额外加权
+SAME_TYPE_VARIED_WEIGHT = 2.0
+NO_LEGAL_MOVES_EPISODE_IDS: tuple[str, ...] = (
+    "tablet-gallery",
+    "design-tablet-class-over",
+    "design-tablet-exam-prep",
+)
+NO_LEGAL_MOVES_WEIGHT = 2.0
+# 当前 best 仍经常尺寸打偏的页：侧栏/大卡/稀有格
+HARD_SIZE_EPISODE_IDS: tuple[str, ...] = (
+    "desktop-holy-grail",
+    "desktop-magazine",
+    "desktop-dashboard",
+    "square-dashboard",
+    "design-desktop-domain",
+    "design-tablet-domain",
+    "1-1",
+    "7",
+    "22-1",
+)
+HARD_SIZE_WEIGHT = 3.0
 
-# MaskablePPO
-LEARNING_RATE = 3e-4
-N_STEPS = 256
-BATCH_SIZE = 128
-GAMMA = 0.99
-ENT_COEF = 0.01
+# 验证集：训练中按面积误差 / 成行率 / 空白率 / 1×1 数量选最优
+VAL_RATIO = 0.15
+VAL_EVERY_UPDATES = 20
+# 空白、面积、结构已同一量级，不再做 running 标准化。
+NORMALIZE_REWARD = False
+# 训练时每局在线抽样类型队列；synth jsonl 只作固定验证集。
+ONLINE_TRAIN = True
+
+# 动作掩码：禁止细长条；按剩余卡目标面积预留空格。
+MAX_ASPECT_RATIO = 3.0
+AREA_RESERVE_RATIO = 0.7
+
+# 搜索老师：Beam Search 出示范轨迹，先行为克隆再 PPO。
+BC_PRETRAIN = True
+BC_EPISODES = 200
+BC_EPOCHS = 8
+BC_BATCH_SIZE = 64
+TEACHER_BEAM_WIDTH = 8
+# 推理：策略引导 Beam Search。1 = 贪心。
+INFER_BEAM_WIDTH = 8
+INFER_POLICY_TOP_K = 4
+
+# ---------------------------------------------------------------------------
+# 训练量（PPO 用「环境步数」，不是监督学习的 epoch）
+# ---------------------------------------------------------------------------
+# 总交互步数：learn(total_timesteps=TIMESTEPS)
+# 约等于更新次数 ≈ TIMESTEPS / (N_STEPS * N_ENVS)
+# 例: 500_000 / (256*4) ≈ 488 次 PPO update
+TIMESTEPS = 500_000
 N_ENVS = 4
 SEED = 42
-TIMESTEPS = 200_000
+
+# ---------------------------------------------------------------------------
+# MaskablePPO 超参（全部在此改；勿再依赖 SB3 隐式默认）
+# ---------------------------------------------------------------------------
+# 每次 update：各环境先各采 N_STEPS 步 → 缓冲大小 = N_STEPS * N_ENVS
+# 再把缓冲切成 BATCH_SIZE 的小批，重复打乱训练 N_EPOCHS 轮（这才是「轮次」）
+LEARNING_RATE = 1.5e-4
+N_STEPS = 256
+BATCH_SIZE = 128
+N_EPOCHS = 12  # 每个 rollout 上的 SGD 轮数（≠ 总训练轮数）
+GAMMA = 0.99
+GAE_LAMBDA = 0.95
+CLIP_RANGE = 0.2
+ENT_COEF = 0.008
+VF_COEF = 0.5
+MAX_GRAD_NORM = 0.5
+TARGET_KL = 0.03  # 动作空间已缩到 48，限制策略抖动以免尺寸来回漂
+
+# 策略网络。层数和宽度压过 6 页模板；最小格走整数 embedding。
+FEATURES_DIM = 128
+CARD_D_MODEL = 64
+CARD_N_LAYERS = 2
+CARD_N_HEADS = 4
+CARD_FFN_DIM = 128
+CARD_DROPOUT = 0.1
+SPATIAL_TOKEN_DIM = 64
+FUSE_RES_BLOCKS = 1
+# Actor/Critic 在特征后的 MLP；None = SB3 默认 [64, 64]
+NET_ARCH = None  # 例: dict(pi=[128, 128], vf=[128, 128])
+
 TENSORBOARD_LOG = ""  # 空 = 不写；可填 "log/tensorboard"
+
+# 训练日志：每完成 N 个 episode 打印一次汇总；每 N 次 PPO update 打印学习指标
+TRAIN_LOG_EVERY_EPISODES = 20
+TRAIN_LOG_EVERY_UPDATES = 1
 
 # 评估：训练结束默认测全集；仅当显式传 episodes=N 时截断
 EVAL_EPISODES = 0  # 0 = 全部 episode
 
 # 权重文件名（落在 Model/<训练时间戳>/ 下，避免互相覆盖）
 CHECKPOINT_NAME = "layout_maskable_ppo"
+BEST_CHECKPOINT_NAME = "layout_maskable_ppo_best"
+
+# test_model 默认加载哪次训练。命令行位置参数 / --ckpt 会覆盖。
+# TEST_MODEL 空字符串 = Model/ 下最新时间戳目录；也可填：
+#   "20260918_171324"
+#   "Model/20260918_171324"
+#   "Model/20260918_171324/layout_maskable_ppo_best"
+TEST_MODEL = ""
+# auto：目录内优先 *_best，否则 final；也可强制 best / final
+TEST_CKPT = "auto"
 
 
 def new_run_dir() -> Path:
@@ -105,6 +179,19 @@ def new_run_dir() -> Path:
     run_dir = MODEL_SAVE_PATH / datetime.now().strftime("%Y%m%d_%H%M%S")
     run_dir.mkdir(parents=True, exist_ok=True)
     return run_dir
+
+
+def ppo_update_count(
+    timesteps: int | None = None,
+    n_steps: int | None = None,
+    n_envs: int | None = None,
+) -> int:
+    """由总步数估算 PPO update（rollout）次数。"""
+    timesteps = TIMESTEPS if timesteps is None else timesteps
+    n_steps = N_STEPS if n_steps is None else n_steps
+    n_envs = N_ENVS if n_envs is None else n_envs
+    per = max(1, int(n_steps) * int(n_envs))
+    return int(timesteps) // per
 
 
 def checkpoint_path(run_dir: Path | None = None) -> Path:
@@ -128,6 +215,33 @@ def design_jsonl() -> Path:
 def sample_jsonl() -> Path:
     """经典/合成 episode 路径 data/sample_layouts.jsonl。"""
     return DATA_DIR / "sample_layouts.jsonl"
+
+
+def psuip_jsonl() -> Path:
+    """带类型 PSUIP episode 路径 data/psuip_typed_layouts.jsonl。"""
+    return DATA_DIR / "psuip_typed_layouts.jsonl"
+
+
+def handcrafted_jsonl() -> Path:
+    """手工标注 episode 路径 data/handcrafted_layouts.jsonl。"""
+    return DATA_DIR / "handcrafted_layouts.jsonl"
+
+
+def synth_jsonl() -> Path:
+    """随机画布合成 episode 路径 data/synth_layouts.jsonl。"""
+    return DATA_DIR / "synth_layouts.jsonl"
+
+
+def test_data_jsonls() -> list[Path]:
+    """评估用 jsonl：data/test_data/*.jsonl。"""
+    if not TEST_DATA_DIR.is_dir():
+        return []
+    return sorted(TEST_DATA_DIR.glob("*.jsonl"))
+
+
+def psuip_source_dir() -> Path:
+    """原始带类型稿目录 data/gird_with_cardtype/。"""
+    return PKG_ROOT.parents[3] / "data" / "gird_with_cardtype"
 
 
 def ensure_package_importable() -> None:

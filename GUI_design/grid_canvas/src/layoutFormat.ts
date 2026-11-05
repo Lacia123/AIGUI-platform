@@ -1,12 +1,14 @@
 import { canPlace, inBounds } from './gridUtils'
+import { cardTypeColor } from './cardTypes'
 import type { GridItem } from './types'
 
-/** 布局序列中单张卡片：(w, h, x, y) */
+/** 布局序列中单张卡片：(w, h, x, y[, type]) */
 export type LayoutCard = {
   w: number
   h: number
   x: number
   y: number
+  type?: string
 }
 
 export type ParseLayoutOptions = {
@@ -20,6 +22,8 @@ export type ParseLayoutOptions = {
 
 export type ParseLayoutResult = {
   cards: LayoutCard[]
+  /** 序列头 `grid:CxR` 解析出的画布格数 */
+  grid?: { cols: number; rows: number }
   /** 非致命问题（如空序列） */
   warnings: string[]
 }
@@ -35,17 +39,32 @@ export class LayoutFormatError extends Error {
   }
 }
 
-/** 匹配 (w,h,x,y)，允许空白 */
-const CARD_RE = /\(\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*\)/g
+/** 可选头：grid:13x8; */
+const GRID_HEADER_RE = /^\s*grid\s*:\s*(\d+)\s*[x×X]\s*(\d+)\s*;?\s*/
+
+/**
+ * 匹配 (w,h,x,y) 或 (w,h,x,y,"type") / (w,h,x,y,'type') / (w,h,x,y,typeId)
+ */
+const CARD_RE =
+  /\(\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*,\s*(-?\d+)(?:\s*,\s*(?:"([^"]*)"|'([^']*)'|([^\s,)]+)))?\s*\)/g
+
+function splitGridHeader(text: string): {
+  grid?: { cols: number; rows: number }
+  body: string
+} {
+  const m = text.match(GRID_HEADER_RE)
+  if (!m) return { body: text }
+  return {
+    grid: { cols: Number(m[1]), rows: Number(m[2]) },
+    body: text.slice(m[0].length),
+  }
+}
 
 /**
  * 解析布局序列字符串。
  *
- * 单卡格式：`(w,h,x,y)`
- * 序列示例：
- * - `(2,1,0,0)(3,2,2,0)`
- * - `[(2,1,0,0), (3,2,2,0)]`
- * - 多行 / 逗号 / 空格分隔均可
+ * 可选头：`grid:13x8;`
+ * 单卡：`(w,h,x,y)` 或 `(w,h,x,y,"type")`
  */
 export function parseLayoutSequence(
   input: string,
@@ -58,14 +77,14 @@ export function parseLayoutSequence(
     return { cards: [], warnings: ['empty layout sequence'] }
   }
 
-  // 去掉包裹的 []，其余交给全局正则提取元组
-  const body = text.replace(/^\s*\[/, '').replace(/\]\s*$/, '')
+  const { grid, body: rawBody } = splitGridHeader(text)
+  const body = rawBody.replace(/^\s*\[/, '').replace(/\]\s*$/, '')
+  const checkCols = options.cols ?? grid?.cols
+  const checkRows = options.rows ?? grid?.rows
 
-  // 检测无法识别的残留（去掉合法元组与分隔符后应为空）
   const residual = body
     .replace(CARD_RE, '')
     .replace(/[\s,;|]+/g, '')
-  // 重置 lastIndex：上面 replace 用了带 g 的 CARD_RE
   CARD_RE.lastIndex = 0
 
   if (residual.length > 0) {
@@ -84,6 +103,7 @@ export function parseLayoutSequence(
     const h = Number(match[2])
     const x = Number(match[3])
     const y = Number(match[4])
+    const type = match[5] ?? match[6] ?? match[7] ?? undefined
     const raw = match[0]
 
     if (![w, h, x, y].every(Number.isInteger)) {
@@ -96,24 +116,23 @@ export function parseLayoutSequence(
       throw new LayoutFormatError(`x and y must be >= 0 in ${raw}`, index, raw)
     }
 
-    const { cols, rows } = options
-    if (cols !== undefined && rows !== undefined) {
-      if (!inBounds(x, y, w, h, cols, rows)) {
+    if (checkCols !== undefined && checkRows !== undefined) {
+      if (!inBounds(x, y, w, h, checkCols, checkRows)) {
         throw new LayoutFormatError(
-          `card ${raw} out of bounds on ${cols}×${rows} grid`,
+          `card ${raw} out of bounds on ${checkCols}×${checkRows} grid`,
           index,
           raw,
         )
       }
     }
 
-    cards.push({ w, h, x, y })
+    cards.push(type ? { w, h, x, y, type } : { w, h, x, y })
     index += 1
   }
 
   if (cards.length === 0) {
     throw new LayoutFormatError(
-      'no cards found; expected tokens like (w,h,x,y)',
+      'no cards found; expected grid:CxR; and/or tokens like (w,h,x,y,"type")',
       undefined,
       input,
     )
@@ -135,13 +154,10 @@ export function parseLayoutSequence(
     }
   }
 
-  return { cards, warnings }
+  return { cards, grid, warnings }
 }
 
-function rectsOverlap(
-  a: LayoutCard,
-  b: LayoutCard,
-): boolean {
+function rectsOverlap(a: LayoutCard, b: LayoutCard): boolean {
   return !(
     a.x + a.w <= b.x ||
     b.x + b.w <= a.x ||
@@ -150,19 +166,37 @@ function rectsOverlap(
   )
 }
 
-/** 序列化为一行：`(w,h,x,y)(w,h,x,y)...` */
+/** 阅读序：自上而下逐行，同行自左而右（与放置先后无关）。 */
+export function sortCardsReadingOrder<T extends { x: number; y: number }>(cards: T[]): T[] {
+  return [...cards].sort((a, b) => a.y - b.y || a.x - b.x)
+}
+
+/** 序列化；可带 `grid:CxR;` 头与 type。卡片顺序固定为阅读序。 */
 export function stringifyLayoutSequence(
-  cards: Array<Pick<LayoutCard, 'w' | 'h' | 'x' | 'y'>>,
+  cards: Array<Pick<LayoutCard, 'w' | 'h' | 'x' | 'y'> & { type?: string }>,
   style: 'compact' | 'list' = 'compact',
+  grid?: { cols: number; rows: number },
 ): string {
-  const parts = cards.map((c) => `(${c.w},${c.h},${c.x},${c.y})`)
-  if (style === 'list') return `[${parts.join(', ')}]`
-  return parts.join('')
+  const ordered = sortCardsReadingOrder(cards)
+  const parts = ordered.map((c) => {
+    if (!c.type) return `(${c.w},${c.h},${c.x},${c.y})`
+    const t = String(c.type)
+    // 无空格/逗号/括号/引号时不加引号，便于从 JSON 原样复制
+    if (/^[^\s,()"']+$/.test(t)) {
+      return `(${c.w},${c.h},${c.x},${c.y},${t})`
+    }
+    const esc = t.replace(/\\/g, '\\\\').replace(/"/g, '\\"')
+    return `(${c.w},${c.h},${c.x},${c.y},"${esc}")`
+  })
+  const body = style === 'list' ? `[${parts.join(', ')}]` : parts.join('')
+  if (grid && grid.cols > 0 && grid.rows > 0) {
+    return `grid:${grid.cols}x${grid.rows};${body}`
+  }
+  return body
 }
 
 /**
  * 将解析结果转为画布 GridItem[]（自动补 id/label/color）。
- * 若提供 cols/rows，会用 canPlace 再校验一次放置合法性。
  */
 export function layoutCardsToGridItems(
   cards: LayoutCard[],
@@ -170,11 +204,10 @@ export function layoutCardsToGridItems(
     cols?: number
     rows?: number
     colors?: string[]
-    /** 为 false 时不校验重叠，便于渲染任意模型输出 */
     checkCollision?: boolean
   } = {},
 ): GridItem[] {
-  const colors = options.colors ?? [
+  const fallbackColors = options.colors ?? [
     '#3d8bfd',
     '#5eb887',
     '#e6a23c',
@@ -201,15 +234,16 @@ export function layoutCardsToGridItems(
         )
       }
     }
+    const type = c.type || `card_${i}`
     items.push({
       id: `layout_${i}`,
-      type: `card_${i}`,
-      label: `#${i + 1} · ${c.w}×${c.h}`,
+      type,
+      label: c.type ? `${c.type} ${c.w}×${c.h}` : `#${i + 1} · ${c.w}×${c.h}`,
       x: c.x,
       y: c.y,
       w: c.w,
       h: c.h,
-      color: colors[i % colors.length],
+      color: c.type ? cardTypeColor(c.type) : fallbackColors[i % fallbackColors.length],
     })
   }
   return items
@@ -223,10 +257,10 @@ export function parseLayoutToGridItems(
     checkCollision?: boolean
   } = {},
 ): GridItem[] {
-  const { cards } = parseLayoutSequence(input, options)
-  return layoutCardsToGridItems(cards, {
-    cols: options.cols,
-    rows: options.rows,
+  const parsed = parseLayoutSequence(input, options)
+  return layoutCardsToGridItems(parsed.cards, {
+    cols: options.cols ?? parsed.grid?.cols,
+    rows: options.rows ?? parsed.grid?.rows,
     colors: options.colors,
     checkCollision: options.checkCollision,
   })

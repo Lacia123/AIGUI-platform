@@ -1,0 +1,218 @@
+{
+  "canvas": {
+    "width": 768,
+    "height": 1024,
+    "gap": 16.0
+  },
+  "cardCount": 9,
+  "candidates": [
+    {
+      "rank": 1,
+      "score": 0.672946,
+      "penalties": {
+        "overflow": 0.06474,
+        "too_narrow": 0.0,
+        "aspect_ratio": 0.374872,
+        "excess_space": 0.0,
+        "complexity": 0.233333,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "row",
+        "children": [
+          {
+            "kind": "column",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 0
+              },
+              {
+                "kind": "row",
+                "children": [
+                  {
+                    "kind": "card",
+                    "cardIndex": 1
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 2
+                  }
+                ]
+              },
+              {
+                "kind": "card",
+                "cardIndex": 3
+              },
+              {
+                "kind": "card",
+                "cardIndex": 4
+              },
+              {
+                "kind": "card",
+                "cardIndex": 5
+              }
+            ]
+          },
+          {
+            "kind": "column",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 6
+              },
+              {
+                "kind": "card",
+                "cardIndex": 7
+              },
+              {
+                "kind": "card",
+                "cardIndex": 8
+              }
+            ]
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:row>\n    <layout:column>\n      <textCard>\n        <text_title>Prepare for Math Final Exams</text_title>\n        <text_subtitle>Today's Review Focus: Operations of Higher-order Function</text_subtitle>\n        <cta href=\"https://example.com/schedule/math-final\">✦ View Full Schedule</cta>\n      </textCard>\n      <layout:row>\n        <targetStatCard>\n          <title>Error Collection</title>\n          <preview src=\"file:///sdcard/Pictures/Camera/20260806/20260806201223.jpg\"></preview>\n          <text>32</text>\n          <caption>PRACTICE</caption>\n          <subtitle>Practice Questions</subtitle>\n        </targetStatCard>\n        <targetStatCard>\n          <title href=\"ding://router?start_time=1755000000000&end_time=1755007200000&type=pre_exam_mock_self_test\">Mock Self-test</title>\n          <preview src=\"file:///sdcard/Pictures/Camera/camera_1786008139046.jpg\"></preview>\n          <text>23</text>\n          <caption>QUESTIONS</caption>\n          <subtitle>Questions</subtitle>\n        </targetStatCard>\n      </layout:row>\n      <showcaseCard>\n        <title>数列的极限知识图谱</title>\n        <imageTextItem>\n          <image src=\"/images/mock_graph.jpeg\" alt=\"数列的极限知识图谱\" href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=pre_exam_knowledge_graph\"></image>\n        </imageTextItem>\n      </showcaseCard>\n      <summaryCard>\n        <title>Today's Review Note</title>\n        <preview src=\"file:///sdcard/Pictures/Camera/camera_1786010698497.jpg\"></preview>\n        <text>Introduction to LCCDEs</text>\n      </summaryCard>\n      <textCard>\n        <text_title>Introduction to LCCDEs</text_title>\n        <text_text>LCCDE form: \\(a_n y^{(n)} + \\cdots + a_0 y = f(x)\\), with constant \\(a_i\\).</text_text>\n      </textCard>\n    </layout:column>\n    <layout:column>\n      <showcaseCard>\n        <title>Homogeneous Equations</title>\n        <text>When \\(f(x)=0\\), solve \\(a_n r^n + \\cdots + a_0 = 0\\).</text>\n      </showcaseCard>\n      <showcaseCard>\n        <title>Distinct / Repeated / Complex Roots</title>\n        <text>Distinct: \\(y_h=\\sum C_i e^{r_i x}\\). Repeated \\(r\\) (mult. \\(k\\)): \\(e^{rx},\\ldots,x^{k-1}e^{rx}\\). Complex: \\(e^{\\alpha x}\\cos(\\beta x),\\ e^{\\alpha x}\\sin(\\beta x)\\).</text>\n      </showcaseCard>\n      <mistakesCard>\n        <title>Weak Spots</title>\n        <preview src=\"file:///sdcard/Pictures/Camera/camera_1786013999770.jpg\"></preview>\n        <mistakesCardItem type=\"error\">\n          <title>Multivariable Calculus</title>\n          <text>38% Mastery</text>\n          <caption>12 Mistakes</caption>\n        </mistakesCardItem>\n        <mistakesCardItem type=\"warning\">\n          <title>Linear Algebra (Matrix)</title>\n          <text>52% Mastery</text>\n          <caption>8 Mistakes</caption>\n        </mistakesCardItem>\n        <mistakesCardItem type=\"normal\">\n          <title>Vector Spaces</title>\n          <text>61% Mastery</text>\n          <caption>5 Mistakes</caption>\n        </mistakesCardItem>\n      </mistakesCard>\n    </layout:column>\n  </layout:row>\n</layout:root>\n"
+    },
+    {
+      "rank": 2,
+      "score": 0.766004,
+      "penalties": {
+        "overflow": 0.157143,
+        "too_narrow": 0.0,
+        "aspect_ratio": 0.375528,
+        "excess_space": 0.0,
+        "complexity": 0.233333,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "row",
+        "children": [
+          {
+            "kind": "column",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 0
+              },
+              {
+                "kind": "row",
+                "children": [
+                  {
+                    "kind": "card",
+                    "cardIndex": 1
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 2
+                  }
+                ]
+              },
+              {
+                "kind": "card",
+                "cardIndex": 3
+              },
+              {
+                "kind": "card",
+                "cardIndex": 4
+              }
+            ]
+          },
+          {
+            "kind": "column",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 5
+              },
+              {
+                "kind": "card",
+                "cardIndex": 6
+              },
+              {
+                "kind": "card",
+                "cardIndex": 7
+              },
+              {
+                "kind": "card",
+                "cardIndex": 8
+              }
+            ]
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:row>\n    <layout:column>\n      <textCard>\n        <text_title>Prepare for Math Final Exams</text_title>\n        <text_subtitle>Today's Review Focus: Operations of Higher-order Function</text_subtitle>\n        <cta href=\"https://example.com/schedule/math-final\">✦ View Full Schedule</cta>\n      </textCard>\n      <layout:row>\n        <targetStatCard>\n          <title>Error Collection</title>\n          <preview src=\"file:///sdcard/Pictures/Camera/20260806/20260806201223.jpg\"></preview>\n          <text>32</text>\n          <caption>PRACTICE</caption>\n          <subtitle>Practice Questions</subtitle>\n        </targetStatCard>\n        <targetStatCard>\n          <title href=\"ding://router?start_time=1755000000000&end_time=1755007200000&type=pre_exam_mock_self_test\">Mock Self-test</title>\n          <preview src=\"file:///sdcard/Pictures/Camera/camera_1786008139046.jpg\"></preview>\n          <text>23</text>\n          <caption>QUESTIONS</caption>\n          <subtitle>Questions</subtitle>\n        </targetStatCard>\n      </layout:row>\n      <showcaseCard>\n        <title>数列的极限知识图谱</title>\n        <imageTextItem>\n          <image src=\"/images/mock_graph.jpeg\" alt=\"数列的极限知识图谱\" href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=pre_exam_knowledge_graph\"></image>\n        </imageTextItem>\n      </showcaseCard>\n      <summaryCard>\n        <title>Today's Review Note</title>\n        <preview src=\"file:///sdcard/Pictures/Camera/camera_1786010698497.jpg\"></preview>\n        <text>Introduction to LCCDEs</text>\n      </summaryCard>\n    </layout:column>\n    <layout:column>\n      <textCard>\n        <text_title>Introduction to LCCDEs</text_title>\n        <text_text>LCCDE form: \\(a_n y^{(n)} + \\cdots + a_0 y = f(x)\\), with constant \\(a_i\\).</text_text>\n      </textCard>\n      <showcaseCard>\n        <title>Homogeneous Equations</title>\n        <text>When \\(f(x)=0\\), solve \\(a_n r^n + \\cdots + a_0 = 0\\).</text>\n      </showcaseCard>\n      <showcaseCard>\n        <title>Distinct / Repeated / Complex Roots</title>\n        <text>Distinct: \\(y_h=\\sum C_i e^{r_i x}\\). Repeated \\(r\\) (mult. \\(k\\)): \\(e^{rx},\\ldots,x^{k-1}e^{rx}\\). Complex: \\(e^{\\alpha x}\\cos(\\beta x),\\ e^{\\alpha x}\\sin(\\beta x)\\).</text>\n      </showcaseCard>\n      <mistakesCard>\n        <title>Weak Spots</title>\n        <preview src=\"file:///sdcard/Pictures/Camera/camera_1786013999770.jpg\"></preview>\n        <mistakesCardItem type=\"error\">\n          <title>Multivariable Calculus</title>\n          <text>38% Mastery</text>\n          <caption>12 Mistakes</caption>\n        </mistakesCardItem>\n        <mistakesCardItem type=\"warning\">\n          <title>Linear Algebra (Matrix)</title>\n          <text>52% Mastery</text>\n          <caption>8 Mistakes</caption>\n        </mistakesCardItem>\n        <mistakesCardItem type=\"normal\">\n          <title>Vector Spaces</title>\n          <text>61% Mastery</text>\n          <caption>5 Mistakes</caption>\n        </mistakesCardItem>\n      </mistakesCard>\n    </layout:column>\n  </layout:row>\n</layout:root>\n"
+    },
+    {
+      "rank": 3,
+      "score": 0.899469,
+      "penalties": {
+        "overflow": 0.088957,
+        "too_narrow": 0.098773,
+        "aspect_ratio": 0.551032,
+        "excess_space": 0.005151,
+        "complexity": 0.155556,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "row",
+        "children": [
+          {
+            "kind": "card",
+            "cardIndex": 0
+          },
+          {
+            "kind": "column",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 1
+              },
+              {
+                "kind": "card",
+                "cardIndex": 2
+              },
+              {
+                "kind": "card",
+                "cardIndex": 3
+              },
+              {
+                "kind": "card",
+                "cardIndex": 4
+              },
+              {
+                "kind": "card",
+                "cardIndex": 5
+              }
+            ]
+          },
+          {
+            "kind": "column",
+            "children": [
+              {
+                "kind": "card",
+                "cardIndex": 6
+              },
+              {
+                "kind": "card",
+                "cardIndex": 7
+              },
+              {
+                "kind": "card",
+                "cardIndex": 8
+              }
+            ]
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:row>\n    <textCard>\n      <text_title>Prepare for Math Final Exams</text_title>\n      <text_subtitle>Today's Review Focus: Operations of Higher-order Function</text_subtitle>\n      <cta href=\"https://example.com/schedule/math-final\">✦ View Full Schedule</cta>\n    </textCard>\n    <layout:column>\n      <targetStatCard>\n        <title>Error Collection</title>\n        <preview src=\"file:///sdcard/Pictures/Camera/20260806/20260806201223.jpg\"></preview>\n        <text>32</text>\n        <caption>PRACTICE</caption>\n        <subtitle>Practice Questions</subtitle>\n      </targetStatCard>\n      <targetStatCard>\n        <title href=\"ding://router?start_time=1755000000000&end_time=1755007200000&type=pre_exam_mock_self_test\">Mock Self-test</title>\n        <preview src=\"file:///sdcard/Pictures/Camera/camera_1786008139046.jpg\"></preview>\n        <text>23</text>\n        <caption>QUESTIONS</caption>\n        <subtitle>Questions</subtitle>\n      </targetStatCard>\n      <showcaseCard>\n        <title>数列的极限知识图谱</title>\n        <imageTextItem>\n          <image src=\"/images/mock_graph.jpeg\" alt=\"数列的极限知识图谱\" href=\"ding://router?start_time=1755000000000&amp;end_time=1755007200000&amp;type=pre_exam_knowledge_graph\"></image>\n        </imageTextItem>\n      </showcaseCard>\n      <summaryCard>\n        <title>Today's Review Note</title>\n        <preview src=\"file:///sdcard/Pictures/Camera/camera_1786010698497.jpg\"></preview>\n        <text>Introduction to LCCDEs</text>\n      </summaryCard>\n      <textCard>\n        <text_title>Introduction to LCCDEs</text_title>\n        <text_text>LCCDE form: \\(a_n y^{(n)} + \\cdots + a_0 y = f(x)\\), with constant \\(a_i\\).</text_text>\n      </textCard>\n    </layout:column>\n    <layout:column>\n      <showcaseCard>\n        <title>Homogeneous Equations</title>\n        <text>When \\(f(x)=0\\), solve \\(a_n r^n + \\cdots + a_0 = 0\\).</text>\n      </showcaseCard>\n      <showcaseCard>\n        <title>Distinct / Repeated / Complex Roots</title>\n        <text>Distinct: \\(y_h=\\sum C_i e^{r_i x}\\). Repeated \\(r\\) (mult. \\(k\\)): \\(e^{rx},\\ldots,x^{k-1}e^{rx}\\). Complex: \\(e^{\\alpha x}\\cos(\\beta x),\\ e^{\\alpha x}\\sin(\\beta x)\\).</text>\n      </showcaseCard>\n      <mistakesCard>\n        <title>Weak Spots</title>\n        <preview src=\"file:///sdcard/Pictures/Camera/camera_1786013999770.jpg\"></preview>\n        <mistakesCardItem type=\"error\">\n          <title>Multivariable Calculus</title>\n          <text>38% Mastery</text>\n          <caption>12 Mistakes</caption>\n        </mistakesCardItem>\n        <mistakesCardItem type=\"warning\">\n          <title>Linear Algebra (Matrix)</title>\n          <text>52% Mastery</text>\n          <caption>8 Mistakes</caption>\n        </mistakesCardItem>\n        <mistakesCardItem type=\"normal\">\n          <title>Vector Spaces</title>\n          <text>61% Mastery</text>\n          <caption>5 Mistakes</caption>\n        </mistakesCardItem>\n      </mistakesCard>\n    </layout:column>\n  </layout:row>\n</layout:root>\n"
+    }
+  ]
+}

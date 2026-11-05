@@ -1,0 +1,58 @@
+{
+  "canvas": {
+    "width": 390,
+    "height": 844,
+    "gap": 16.0
+  },
+  "cardCount": 1,
+  "candidates": [
+    {
+      "rank": 1,
+      "score": 2.721999,
+      "penalties": {
+        "overflow": 0.0,
+        "too_narrow": 0.0,
+        "aspect_ratio": 2.495588,
+        "excess_space": 0.226411,
+        "complexity": 0.0,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "column",
+        "children": [
+          {
+            "kind": "card",
+            "cardIndex": 0
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:column>\n    <targetStatCard>\n      <subtitle>FOR MAGGIE</subtitle>\n      <title>Master Calculus in 14 Dyas.</title>\n      <text>240</text>\n      <caption>TOTAL PROBLEMS</caption>\n    </targetStatCard>\n  </layout:column>\n</layout:root>\n"
+    },
+    {
+      "rank": 2,
+      "score": 4.721999,
+      "penalties": {
+        "overflow": 0.0,
+        "too_narrow": 0.0,
+        "aspect_ratio": 2.495588,
+        "excess_space": 0.226411,
+        "complexity": 0.0,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 2.0
+      },
+      "layout": {
+        "kind": "row",
+        "children": [
+          {
+            "kind": "card",
+            "cardIndex": 0
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:row>\n    <targetStatCard>\n      <subtitle>FOR MAGGIE</subtitle>\n      <title>Master Calculus in 14 Dyas.</title>\n      <text>240</text>\n      <caption>TOTAL PROBLEMS</caption>\n    </targetStatCard>\n  </layout:row>\n</layout:root>\n"
+    }
+  ]
+}

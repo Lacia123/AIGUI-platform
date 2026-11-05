@@ -1,16 +1,15 @@
 """将 data/gird_with_cardtype/*.psuip.md 映射为离散网格。
 
-统一度量：预设单位格 80 × gap/pad 16，与页面默认一致。
-  phone 390×844 → 4×8
-  desktop 1280×800 → 13×8
-  dashboard 1880×680 → 19×7
+统一度量：单位格 228×216 + gap 16；格子由页面分辨率推导：
+  phone 390×844 → 1×3
+  desktop 1280×800 → 5×3
+  dashboard 1880×680 → 7×3
 
-card 类型名对齐 docx/CARD_REFERENCE.md §0（Slab ×8 + 透传）。
+card 类型名对齐 docx/CARD_REFERENCE.md §0（Slab ×9 + 透传）。
 """
 
 from __future__ import annotations
 
-# 与 CARD_REFERENCE.md / src/cardTypes.ts 一致
 TYPE_COLORS: dict[str, str] = {
     "targetStatCard": "#e6a23c",
     "mistakesCard": "#d9776f",
@@ -20,6 +19,7 @@ TYPE_COLORS: dict[str, str] = {
     "commonStyleServiceListDesc": "#6b8cae",
     "pairedImageTextCard": "#4a90a4",
     "heroCard": "#2aa8a0",
+    "contentSummaryCard": "#c4785a",
     "[table:commonStyle]": "#8a7a5c",
     "__rawMarkdown__": "#7a8b9a",
     "Topology": "#5c6bc0",
@@ -51,15 +51,15 @@ PSUIP_TYPED_SAMPLES: list[dict] = [
         "preset_id": "desktop",
         "source_file": "class_is_over_dashboard.psuip.md",
         "label": "PSUIP·课堂结束",
-        "description": "textCard + 4 targetStat + showcaseCard / __rawMarkdown__（13×8 @80/16）",
+        "description": "textCard + 4 targetStat + showcase / raw（5×3 @228×216/16）",
         "cards": [
-            _c(13, 1, 0, 0, "textCard", "Well done header"),
-            _c(3, 2, 0, 1, "targetStatCard", "Transcription"),
-            _c(3, 2, 3, 1, "targetStatCard", "Related files"),
-            _c(3, 2, 6, 1, "targetStatCard", "Smart Camera"),
-            _c(4, 2, 9, 1, "targetStatCard", "Handwriting Space"),
-            _c(5, 5, 0, 3, "showcaseCard", "知识图谱预览"),
-            _c(8, 5, 5, 3, "__rawMarkdown__", "课堂笔记"),
+            _c(5, 1, 0, 0, "textCard", "Well done header"),
+            _c(1, 1, 0, 1, "targetStatCard", "Transcription"),
+            _c(1, 1, 1, 1, "targetStatCard", "Related files"),
+            _c(1, 1, 2, 1, "targetStatCard", "Smart Camera"),
+            _c(2, 1, 3, 1, "targetStatCard", "Handwriting Space"),
+            _c(2, 1, 0, 2, "showcaseCard", "知识图谱预览"),
+            _c(3, 1, 2, 2, "__rawMarkdown__", "课堂笔记"),
         ],
     },
     {
@@ -67,14 +67,11 @@ PSUIP_TYPED_SAMPLES: list[dict] = [
         "preset_id": "desktop",
         "source_file": "contents_source_legend.psuip.md",
         "label": "PSUIP·目录与图例",
-        "description": "textCard + 4× commonStyleServiceListDesc + heroCard（13×8）",
+        "description": "标题 + 目录行 + hero（5×3）",
         "cards": [
-            _c(13, 1, 0, 0, "textCard", "CONTENTS"),
-            _c(13, 1, 0, 1, "commonStyleServiceListDesc", "1 Definition"),
-            _c(13, 1, 0, 2, "commonStyleServiceListDesc", "2 Properties"),
-            _c(13, 1, 0, 3, "commonStyleServiceListDesc", "3 Applications"),
-            _c(13, 1, 0, 4, "commonStyleServiceListDesc", "4 Visual Data"),
-            _c(13, 3, 0, 5, "heroCard", "SOURCE LEGEND"),
+            _c(5, 1, 0, 0, "textCard", "CONTENTS"),
+            _c(5, 1, 0, 1, "commonStyleServiceListDesc", "1–4 Sections"),
+            _c(5, 1, 0, 2, "heroCard", "SOURCE LEGEND"),
         ],
     },
     {
@@ -82,10 +79,10 @@ PSUIP_TYPED_SAMPLES: list[dict] = [
         "preset_id": "desktop",
         "source_file": "functions_applications_notes.psuip.md",
         "label": "PSUIP·函数笔记",
-        "description": "textCard + __rawMarkdown__ 通栏笔记（13×8）",
+        "description": "标题 + 笔记（5×3）",
         "cards": [
-            _c(13, 2, 0, 0, "textCard", "Functions & Applications"),
-            _c(13, 6, 0, 2, "__rawMarkdown__", "笔记正文"),
+            _c(5, 1, 0, 0, "textCard", "Functions & Applications"),
+            _c(5, 2, 0, 1, "__rawMarkdown__", "笔记正文"),
         ],
     },
     {
@@ -93,15 +90,15 @@ PSUIP_TYPED_SAMPLES: list[dict] = [
         "preset_id": "desktop",
         "source_file": "math_final_dashboard.psuip.md",
         "label": "PSUIP·期末备考",
-        "description": "顶栏 + 3 入口 + showcase / raw / mistakes（13×8）",
+        "description": "顶栏 + 3 入口 + 三列底（5×3）",
         "cards": [
-            _c(13, 1, 0, 0, "textCard", "Prepare for Math Final"),
-            _c(4, 2, 0, 1, "targetStatCard", "Past Exam Papers"),
-            _c(5, 2, 4, 1, "targetStatCard", "Error Collection"),
-            _c(4, 2, 9, 1, "targetStatCard", "Mock Self-test"),
-            _c(4, 5, 0, 3, "showcaseCard", "知识图谱预览"),
-            _c(5, 5, 4, 3, "__rawMarkdown__", "Today's Review Note"),
-            _c(4, 5, 9, 3, "mistakesCard", "Weak Spots"),
+            _c(5, 1, 0, 0, "textCard", "Prepare for Math Final"),
+            _c(2, 1, 0, 1, "targetStatCard", "Past Exam Papers"),
+            _c(2, 1, 2, 1, "targetStatCard", "Error Collection"),
+            _c(1, 1, 4, 1, "targetStatCard", "Mock Self-test"),
+            _c(2, 1, 0, 2, "showcaseCard", "知识图谱预览"),
+            _c(2, 1, 2, 2, "__rawMarkdown__", "Today's Review Note"),
+            _c(1, 1, 4, 2, "mistakesCard", "Weak Spots"),
         ],
     },
     {
@@ -109,9 +106,9 @@ PSUIP_TYPED_SAMPLES: list[dict] = [
         "preset_id": "desktop",
         "source_file": "tager.psuip.md",
         "label": "PSUIP·单目标卡",
-        "description": "单张 targetStatCard（13×8）",
+        "description": "单张 targetStatCard 填满画布（5×3）",
         "cards": [
-            _c(9, 3, 2, 2, "targetStatCard", "Master Calculus"),
+            _c(5, 3, 0, 0, "targetStatCard", "Master Calculus"),
         ],
     },
     {
@@ -119,12 +116,12 @@ PSUIP_TYPED_SAMPLES: list[dict] = [
         "preset_id": "desktop",
         "source_file": "the_domain.psuip.md",
         "label": "PSUIP·Domain 概念",
-        "description": "双 textCard + 双 summaryCard（13×8）",
+        "description": "双标题 + 双 summary（5×3）",
         "cards": [
-            _c(13, 2, 0, 0, "textCard", "The Domain"),
-            _c(13, 2, 0, 2, "textCard", "CORE DEFINITION"),
-            _c(6, 4, 0, 4, "summaryCard", "Visualizing Domain"),
-            _c(7, 4, 6, 4, "summaryCard", "Input-Output Rule"),
+            _c(5, 1, 0, 0, "textCard", "The Domain"),
+            _c(5, 1, 0, 1, "textCard", "CORE DEFINITION"),
+            _c(2, 1, 0, 2, "summaryCard", "Visualizing Domain"),
+            _c(3, 1, 2, 2, "summaryCard", "Input-Output Rule"),
         ],
     },
     {
@@ -132,14 +129,11 @@ PSUIP_TYPED_SAMPLES: list[dict] = [
         "preset_id": "phone",
         "source_file": "contents_source_legend.psuip.md",
         "label": "PSUIP·目录图例(手机)",
-        "description": "竖屏 4×8",
+        "description": "竖屏 1×3",
         "cards": [
-            _c(4, 1, 0, 0, "textCard", "CONTENTS"),
-            _c(4, 1, 0, 1, "commonStyleServiceListDesc", "1 Definition"),
-            _c(4, 1, 0, 2, "commonStyleServiceListDesc", "2 Properties"),
-            _c(4, 1, 0, 3, "commonStyleServiceListDesc", "3 Applications"),
-            _c(4, 1, 0, 4, "commonStyleServiceListDesc", "4 Visual Data"),
-            _c(4, 3, 0, 5, "heroCard", "SOURCE LEGEND"),
+            _c(1, 1, 0, 0, "textCard", "CONTENTS"),
+            _c(1, 1, 0, 1, "commonStyleServiceListDesc", "Sections"),
+            _c(1, 1, 0, 2, "heroCard", "SOURCE LEGEND"),
         ],
     },
     {
@@ -147,9 +141,9 @@ PSUIP_TYPED_SAMPLES: list[dict] = [
         "preset_id": "phone",
         "source_file": "tager.psuip.md",
         "label": "PSUIP·单目标卡(手机)",
-        "description": "竖屏通栏目标卡 4×8",
+        "description": "竖屏目标卡填满画布 1×3",
         "cards": [
-            _c(4, 3, 0, 2, "targetStatCard", "Master Calculus"),
+            _c(1, 3, 0, 0, "targetStatCard", "Master Calculus"),
         ],
     },
     {
@@ -157,12 +151,11 @@ PSUIP_TYPED_SAMPLES: list[dict] = [
         "preset_id": "phone",
         "source_file": "the_domain.psuip.md",
         "label": "PSUIP·Domain(手机)",
-        "description": "竖屏 Domain 堆叠 4×8",
+        "description": "竖屏三行 1×3",
         "cards": [
-            _c(4, 1, 0, 0, "textCard", "The Domain"),
-            _c(4, 1, 0, 1, "textCard", "CORE DEFINITION"),
-            _c(4, 3, 0, 2, "summaryCard", "Visualizing Domain"),
-            _c(4, 3, 0, 5, "summaryCard", "Input-Output Rule"),
+            _c(1, 1, 0, 0, "textCard", "The Domain"),
+            _c(1, 1, 0, 1, "textCard", "CORE DEFINITION"),
+            _c(1, 1, 0, 2, "summaryCard", "Visualizing Domain"),
         ],
     },
     {
@@ -170,15 +163,15 @@ PSUIP_TYPED_SAMPLES: list[dict] = [
         "preset_id": "dashboard",
         "source_file": "class_is_over_dashboard.psuip.md",
         "label": "PSUIP·课堂结束(宽)",
-        "description": "1880×680 @80/16 → 19×7",
+        "description": "1880×680 @228×216/16 → 7×3",
         "cards": [
-            _c(19, 1, 0, 0, "textCard", "Well done header"),
-            _c(5, 2, 0, 1, "targetStatCard", "Transcription"),
-            _c(5, 2, 5, 1, "targetStatCard", "Related files"),
-            _c(5, 2, 10, 1, "targetStatCard", "Smart Camera"),
-            _c(4, 2, 15, 1, "targetStatCard", "Handwriting Space"),
-            _c(8, 4, 0, 3, "showcaseCard", "知识图谱预览"),
-            _c(11, 4, 8, 3, "__rawMarkdown__", "课堂笔记"),
+            _c(7, 1, 0, 0, "textCard", "Well done header"),
+            _c(2, 1, 0, 1, "targetStatCard", "Transcription"),
+            _c(2, 1, 2, 1, "targetStatCard", "Related files"),
+            _c(2, 1, 4, 1, "targetStatCard", "Smart Camera"),
+            _c(1, 1, 6, 1, "targetStatCard", "Handwriting Space"),
+            _c(3, 1, 0, 2, "showcaseCard", "知识图谱预览"),
+            _c(4, 1, 3, 2, "__rawMarkdown__", "课堂笔记"),
         ],
     },
     {
@@ -186,15 +179,15 @@ PSUIP_TYPED_SAMPLES: list[dict] = [
         "preset_id": "dashboard",
         "source_file": "math_final_dashboard.psuip.md",
         "label": "PSUIP·期末备考(宽)",
-        "description": "宽屏 19×7",
+        "description": "宽屏 7×3",
         "cards": [
-            _c(19, 1, 0, 0, "textCard", "Prepare for Math Final"),
-            _c(6, 2, 0, 1, "targetStatCard", "Past Exam Papers"),
-            _c(7, 2, 6, 1, "targetStatCard", "Error Collection"),
-            _c(6, 2, 13, 1, "targetStatCard", "Mock Self-test"),
-            _c(6, 4, 0, 3, "showcaseCard", "知识图谱预览"),
-            _c(7, 4, 6, 3, "__rawMarkdown__", "Today's Review Note"),
-            _c(6, 4, 13, 3, "mistakesCard", "Weak Spots"),
+            _c(7, 1, 0, 0, "textCard", "Prepare for Math Final"),
+            _c(2, 1, 0, 1, "targetStatCard", "Past Exam Papers"),
+            _c(3, 1, 2, 1, "targetStatCard", "Error Collection"),
+            _c(2, 1, 5, 1, "targetStatCard", "Mock Self-test"),
+            _c(2, 1, 0, 2, "showcaseCard", "知识图谱预览"),
+            _c(3, 1, 2, 2, "__rawMarkdown__", "Today's Review Note"),
+            _c(2, 1, 5, 2, "mistakesCard", "Weak Spots"),
         ],
     },
 ]

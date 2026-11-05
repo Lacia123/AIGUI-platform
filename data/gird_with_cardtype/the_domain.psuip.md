@@ -1,5 +1,4 @@
-<layout:root>
-  <layout:column alignItems="stretch">
+
 
     <textCard>
       <text_title>The Domain</text_title>
@@ -24,5 +23,3 @@
       <text>Every function has boundaries. The Domain ensures the math stays "real" and avoids errors like dividing by zero.</text>
     </summaryCard>
 
-  </layout:column>
-</layout:root>

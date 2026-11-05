@@ -1,0 +1,11 @@
+# hand-mu4xh59w-1 success=True
+grid:4x6;(3,1,0,0,textCard)(1,1,0,1,targetStatCard)(2,2,1,1,summaryCard)(3,1,0,3,showcaseCard)
+
+# hand-mu4xh59w-2 success=True
+grid:4x6;(3,1,0,0,textCard)(1,1,0,1,targetStatCard)(3,3,0,2,heroCard)
+
+# hand-mu4xh59w-3 success=True
+grid:4x6;(1,1,0,0,mistakesCard)(2,2,1,0,mistakesCard)(2,3,0,2,mistakesCard)
+
+# hand-mu4xh59w-4 success=True
+grid:4x6;(3,1,0,0,[table:commonStyle])(2,3,0,2,Topology)

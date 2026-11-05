@@ -14,12 +14,14 @@ import { computeGridMetrics, pageSizeForGrid } from './gridMetrics'
 import {
   LayoutFormatError,
   inferGridSize,
+  layoutCardsToGridItems,
   parseLayoutSequence,
   parseLayoutToGridItems,
   stringifyLayoutSequence,
 } from './layoutFormat'
 import { sampleLayoutsForPreset, type SampleLayout } from './sampleLayouts'
 import type { GridItem, ResolutionPreset } from './types'
+import { NavLinks } from './NavLinks'
 import './App.css'
 
 function uid() {
@@ -30,7 +32,7 @@ const LAYOUT_PLACEHOLDER =
   '示例：(2,1,0,0)(3,2,2,0) 或 [(2,1,0,0), (3,2,2,0)]\n格式：每张卡 (w,h,x,y)'
 
 const RESULT_PLACEHOLDER =
-  '粘贴模型输出，例如：\n(6,6,0,5)(6,2,0,3)(6,2,0,1)(6,1,0,0)(6,1,0,11)\n按 (w,h,x,y) 坐标渲染到下方大画布；#n 为先后顺序'
+  '粘贴模型输出，例如：\ngrid:5x3;(5,1,0,0,textCard)(1,1,0,1,targetStatCard)\n含画布尺寸 + (w,h,x,y,type)；渲染到下方大画布'
 
 const DEFAULT_RESULT_PAGE = RESOLUTION_PRESETS.find((p) => p.id === 'dashboard') ?? {
   width: 1880,
@@ -232,13 +234,27 @@ export default function App() {
 
   function renderModelResult() {
     try {
-      const { cards } = parseLayoutSequence(resultInput, {
+      const parsed = parseLayoutSequence(resultInput, {
         checkOverlap: false,
       })
+      const { cards, grid } = parsed
       const needed = inferGridSize(cards, 1, 1)
-      let pageW = resultPageW
-      let pageH = resultPageH
-      let metricsNow = computeGridMetrics(
+      const targetCols = grid?.cols ?? Math.max(needed.cols, 1)
+      const targetRows = grid?.rows ?? Math.max(needed.rows, 1)
+
+      const expanded = pageSizeForGrid(
+        targetCols,
+        targetRows,
+        resultCellW0,
+        resultCellH0,
+        resultGap,
+      )
+      const pageW = expanded.width
+      const pageH = expanded.height
+      setResultPageW(pageW)
+      setResultPageH(pageH)
+
+      const metricsNow = computeGridMetrics(
         pageW,
         pageH,
         resultCellW0,
@@ -246,32 +262,10 @@ export default function App() {
         resultGap,
       )
 
-      if (needed.cols > metricsNow.cols || needed.rows > metricsNow.rows) {
-        const expanded = pageSizeForGrid(
-          Math.max(needed.cols, metricsNow.cols),
-          Math.max(needed.rows, metricsNow.rows),
-          resultCellW0,
-          resultCellH0,
-          resultGap,
-        )
-        pageW = expanded.width
-        pageH = expanded.height
-        setResultPageW(pageW)
-        setResultPageH(pageH)
-        metricsNow = computeGridMetrics(
-          pageW,
-          pageH,
-          resultCellW0,
-          resultCellH0,
-          resultGap,
-        )
-      }
-
-      const next = parseLayoutToGridItems(resultInput, {
+      const next = layoutCardsToGridItems(cards, {
         cols: metricsNow.cols,
         rows: metricsNow.rows,
         checkCollision: false,
-        checkOverlap: false,
       })
       setResultItems(next)
       setResultError(null)
@@ -328,19 +322,22 @@ export default function App() {
       <header className="topbar">
         <div>
           <h1>固定网格画布</h1>
-          <p>样例统一 80 单位格 / 16 gap · 余数摊平 · 拖入吸附 · 碰撞检测</p>
+          <p>样例统一 228×216 单位格 / 16 gap · 余数摊平 · 拖入吸附 · 碰撞检测</p>
         </div>
-        <div className="presets">
-          {RESOLUTION_PRESETS.map((p) => (
-            <button
-              key={p.id}
-              type="button"
-              className={p.id === presetId ? 'active' : ''}
-              onClick={() => switchPreset(p)}
-            >
-              {p.label}
-            </button>
-          ))}
+        <div className="topbar-right">
+          <NavLinks active="home" />
+          <div className="presets">
+            {RESOLUTION_PRESETS.map((p) => (
+              <button
+                key={p.id}
+                type="button"
+                className={p.id === presetId ? 'active' : ''}
+                onClick={() => switchPreset(p)}
+              >
+                {p.label}
+              </button>
+            ))}
+          </div>
         </div>
       </header>
 
@@ -492,7 +489,7 @@ export default function App() {
           <div>
             <h2>模型结果画布</h2>
             <p>
-              可手动改分辨率与单位格；与编辑区相同公式（含 gap）。块上 #n 为输出先后顺序。
+              可手动改分辨率与单位格；与编辑区相同公式（含 gap）。块上显示 #顺序 与 card 类型。
             </p>
           </div>
           <span className="stat">
@@ -608,7 +605,8 @@ export default function App() {
           <div className="layout-input-head">
             <label htmlFor="result-seq">模型输出序列</label>
             <span className="layout-input-hint">
-              若布局超出当前网格，会自动扩大页面宽高以容纳
+              支持 <code>grid:13x8;(w,h,x,y,type)…</code>
+              ；有 grid 头时会按该尺寸设定大画布
             </span>
           </div>
           <textarea

@@ -11,6 +11,8 @@ type Props = {
   items: GridItem[]
   onPlace: (item: Omit<GridItem, 'id'>) => boolean
   onMove: (id: string, x: number, y: number) => boolean
+  /** 可选：改尺寸（格数）；提供时选中卡右下角可拖拽缩放 */
+  onResize?: (id: string, w: number, h: number) => boolean
   onSelect: (id: string | null) => void
   selectedId: string | null
   onRemove: (id: string) => void
@@ -22,6 +24,7 @@ export function GridCanvas({
   items,
   onPlace,
   onMove,
+  onResize,
   onSelect,
   selectedId,
   onRemove,
@@ -35,6 +38,16 @@ export function GridCanvas({
     h: number
     ok: boolean
   } | null>(null)
+  const resizingRef = useRef<{
+    id: string
+    startX: number
+    startY: number
+    origW: number
+    origH: number
+    cellX: number
+    cellY: number
+  } | null>(null)
+  const [isResizing, setIsResizing] = useState(false)
 
   const { pageW, pageH, cols, rows, cellW, cellH, gap } = metrics
 
@@ -141,6 +154,49 @@ export function GridCanvas({
     onSelect(item.id)
   }
 
+  function startResize(item: GridItem, e: React.PointerEvent) {
+    if (!onResize) return
+    e.stopPropagation()
+    e.preventDefault()
+    onSelect(item.id)
+    resizingRef.current = {
+      id: item.id,
+      startX: e.clientX,
+      startY: e.clientY,
+      origW: item.w,
+      origH: item.h,
+      cellX: item.x,
+      cellY: item.y,
+    }
+    setIsResizing(true)
+    ;(e.target as HTMLElement).setPointerCapture(e.pointerId)
+  }
+
+  function onResizeMove(e: React.PointerEvent) {
+    const r = resizingRef.current
+    if (!r || !onResize) return
+    const stepW = cellW + gap
+    const stepH = cellH + gap
+    const dw = Math.round((e.clientX - r.startX) / scale / stepW)
+    const dh = Math.round((e.clientY - r.startY) / scale / stepH)
+    const maxW = cols - r.cellX
+    const maxH = rows - r.cellY
+    const nextW = Math.max(1, Math.min(maxW, r.origW + dw))
+    const nextH = Math.max(1, Math.min(maxH, r.origH + dh))
+    onResize(r.id, nextW, nextH)
+  }
+
+  function endResize(e: React.PointerEvent) {
+    if (!resizingRef.current) return
+    resizingRef.current = null
+    setIsResizing(false)
+    try {
+      ;(e.target as HTMLElement).releasePointerCapture(e.pointerId)
+    } catch {
+      /* ignore */
+    }
+  }
+
   return (
     <div className="canvas-stage">
       <div
@@ -178,7 +234,7 @@ export function GridCanvas({
             <div
               key={item.id}
               className={`placed ${selectedId === item.id ? 'selected' : ''}`}
-              draggable
+              draggable={!isResizing}
               onDragStart={(e) => startMove(item, e)}
               onDragEnd={() => {
                 setGhost(null)
@@ -201,7 +257,20 @@ export function GridCanvas({
               <span>{item.label}</span>
               <small>
                 ({item.x},{item.y}) {item.w}×{item.h}
+                {item.type ? ` · ${item.type}` : ''}
               </small>
+              {onResize && selectedId === item.id ? (
+                <button
+                  type="button"
+                  className="resize-handle"
+                  aria-label="拖拽改尺寸"
+                  onPointerDown={(e) => startResize(item, e)}
+                  onPointerMove={onResizeMove}
+                  onPointerUp={endResize}
+                  onPointerCancel={endResize}
+                  onDragStart={(e) => e.preventDefault()}
+                />
+              ) : null}
             </div>
           ))}
         </div>

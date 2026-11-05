@@ -1,0 +1,105 @@
+{
+  "summary": {
+    "top_left": {
+      "ok": 4,
+      "quality": 3.4375,
+      "constraint": 4.0,
+      "n": 8,
+      "success_rate": 0.5,
+      "mean_layout_quality": 0.4296875,
+      "constraint_success_rate": 0.5
+    },
+    "heuristic_beam": {
+      "ok": 7,
+      "quality": 6.443363095238095,
+      "constraint": 7.0,
+      "n": 8,
+      "success_rate": 0.875,
+      "mean_layout_quality": 0.8054203869047619,
+      "constraint_success_rate": 0.875
+    },
+    "ranked_beam": {
+      "ok": 7,
+      "quality": 6.4075,
+      "constraint": 7.0,
+      "n": 8,
+      "success_rate": 0.875,
+      "mean_layout_quality": 0.8009375,
+      "constraint_success_rate": 0.875
+    }
+  },
+  "episodes": [
+    {
+      "episode_id": "synth-0030",
+      "top_left_success": false,
+      "heuristic_success": true,
+      "ranked_success": true,
+      "top_left_q": 0.0,
+      "heuristic_q": 1.0,
+      "ranked_q": 1.0
+    },
+    {
+      "episode_id": "synth-0031",
+      "top_left_success": false,
+      "heuristic_success": true,
+      "ranked_success": true,
+      "top_left_q": 0.0,
+      "heuristic_q": 1.0,
+      "ranked_q": 1.0
+    },
+    {
+      "episode_id": "synth-0002",
+      "top_left_success": true,
+      "heuristic_success": true,
+      "ranked_success": true,
+      "top_left_q": 0.75,
+      "heuristic_q": 0.7708333333333334,
+      "ranked_q": 0.75
+    },
+    {
+      "episode_id": "synth-0027",
+      "top_left_success": false,
+      "heuristic_success": false,
+      "ranked_success": false,
+      "top_left_q": 0.0,
+      "heuristic_q": 0.0,
+      "ranked_q": 0.0
+    },
+    {
+      "episode_id": "synth-0020",
+      "top_left_success": true,
+      "heuristic_success": true,
+      "ranked_success": true,
+      "top_left_q": 0.875,
+      "heuristic_q": 0.8958333333333334,
+      "ranked_q": 0.875
+    },
+    {
+      "episode_id": "synth-0026",
+      "top_left_success": true,
+      "heuristic_success": true,
+      "ranked_success": true,
+      "top_left_q": 1.0,
+      "heuristic_q": 0.97,
+      "ranked_q": 0.97
+    },
+    {
+      "episode_id": "synth-0015",
+      "top_left_success": true,
+      "heuristic_success": true,
+      "ranked_success": true,
+      "top_left_q": 0.8125,
+      "heuristic_q": 0.828125,
+      "ranked_q": 0.8125
+    },
+    {
+      "episode_id": "synth-0034",
+      "top_left_success": false,
+      "heuristic_success": true,
+      "ranked_success": true,
+      "top_left_q": 0.0,
+      "heuristic_q": 0.9785714285714285,
+      "ranked_q": 1.0
+    }
+  ]
+}

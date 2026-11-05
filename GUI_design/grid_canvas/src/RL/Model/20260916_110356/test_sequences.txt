@@ -1,0 +1,131 @@
+# phone-feed success=True
+grid:1x3;(1,1,0,0,textCard)(1,1,0,1,commonStyleServiceListDesc)(1,1,0,2,textCard)
+
+# phone-landing success=True
+grid:1x3;(1,1,0,0,textCard)(1,1,0,1,heroCard)(1,1,0,2,textCard)
+
+# phone-profile success=True
+grid:1x3;(1,1,0,0,heroCard)(1,1,0,1,summaryCard)(1,1,0,2,textCard)
+
+# tablet-blog success=True
+grid:3x4;(3,1,0,0,textCard)(2,3,0,1,__rawMarkdown__)(1,2,2,1,summaryCard)(1,1,2,3,textCard)
+
+# tablet-gallery success=True
+grid:3x4;(3,1,0,0,textCard)(1,1,0,1,showcaseCard)(1,1,1,1,showcaseCard)(1,1,2,1,showcaseCard)(1,1,0,2,showcaseCard)(1,1,1,2,showcaseCard)(1,1,2,2,showcaseCard)(3,1,0,3,textCard)
+
+# tablet-dashboard success=True
+grid:3x4;(3,1,0,0,textCard)(1,1,0,1,textCard)(1,1,1,1,targetStatCard)(1,1,2,1,targetStatCard)(2,2,0,2,showcaseCard)
+
+# desktop-dashboard success=True
+grid:5x3;(5,1,0,0,targetStatCard)(2,1,0,1,textCard)(1,1,2,1,targetStatCard)(1,1,3,1,targetStatCard)(1,1,4,1,targetStatCard)(2,1,0,2,showcaseCard)(1,1,2,2,textCard)(2,1,3,2,__rawMarkdown__)
+
+# desktop-holy-grail success=True
+grid:5x3;(5,1,0,0,textCard)(2,1,0,1,summaryCard)(2,1,2,1,__rawMarkdown__)(5,1,0,2,textCard)
+
+# desktop-three-col success=True
+grid:5x3;(5,1,0,0,textCard)(2,1,0,1,textCard)(2,1,2,1,__rawMarkdown__)(1,1,4,1,summaryCard)(5,1,0,2,textCard)
+
+# desktop-magazine success=True
+grid:5x3;(5,1,0,0,textCard)(5,1,0,1,heroCard)(2,1,0,2,summaryCard)(3,1,2,2,summaryCard)
+
+# square-holy-grail success=True
+grid:3x3;(3,1,0,0,textCard)(1,1,0,1,summaryCard)(1,1,1,1,__rawMarkdown__)(3,1,0,2,textCard)
+
+# square-dashboard success=True
+grid:3x3;(3,1,0,0,textCard)(1,1,0,1,textCard)(1,1,1,1,targetStatCard)(1,1,2,1,targetStatCard)(3,1,0,2,showcaseCard)
+
+# square-gallery success=False
+grid:3x3;(3,1,0,0,showcaseCard)(1,1,0,1,showcaseCard)(1,1,1,1,showcaseCard)(1,1,2,1,showcaseCard)(2,1,0,2,showcaseCard)(1,1,2,2,showcaseCard)
+
+# square-landing success=True
+grid:3x3;(3,1,0,0,textCard)(2,1,0,1,heroCard)(1,2,2,1,summaryCard)(2,1,0,2,summaryCard)
+
+# design-phone-calculus success=True
+grid:1x3;(1,1,0,0,targetStatCard)(1,1,0,1,__rawMarkdown__)(1,1,0,2,textCard)
+
+# design-phone-calculus-tight success=True
+grid:1x3;(1,2,0,0,heroCard)(1,1,0,2,textCard)
+
+# design-desktop-class-over success=True
+grid:5x3;(5,1,0,0,textCard)(1,1,0,1,targetStatCard)(1,1,1,1,targetStatCard)(1,1,2,1,targetStatCard)(1,1,3,1,targetStatCard)(2,1,0,2,showcaseCard)(3,1,2,2,__rawMarkdown__)
+
+# design-tablet-class-over success=True
+grid:3x4;(3,1,0,0,textCard)(1,1,0,1,targetStatCard)(1,1,1,1,targetStatCard)(1,1,2,1,targetStatCard)(1,1,0,2,showcaseCard)(1,1,1,2,__rawMarkdown__)(3,1,0,3,textCard)
+
+# design-square-class-over success=True
+grid:3x3;(3,1,0,0,textCard)(1,1,0,1,targetStatCard)(1,1,1,1,targetStatCard)(1,1,2,1,targetStatCard)(1,1,0,2,showcaseCard)(2,1,1,2,__rawMarkdown__)
+
+# design-desktop-exam-prep success=True
+grid:5x3;(5,1,0,0,textCard)(2,1,0,1,targetStatCard)(2,1,2,1,targetStatCard)(1,1,4,1,targetStatCard)(2,1,0,2,showcaseCard)(2,1,2,2,__rawMarkdown__)(1,1,4,2,mistakesCard)
+
+# design-tablet-exam-prep success=True
+grid:3x4;(3,1,0,0,textCard)(1,1,0,1,targetStatCard)(1,1,1,1,targetStatCard)(1,1,2,1,targetStatCard)(1,2,0,2,showcaseCard)(1,2,1,2,__rawMarkdown__)(1,2,2,2,mistakesCard)
+
+# design-desktop-exam-prep-v2 success=True
+grid:5x3;(5,1,0,0,textCard)(2,1,0,1,targetStatCard)(2,1,2,1,targetStatCard)(1,1,4,1,targetStatCard)(2,1,0,2,showcaseCard)(2,1,2,2,__rawMarkdown__)(1,1,4,2,mistakesCard)
+
+# design-desktop-domain success=True
+grid:5x3;(5,1,0,0,textCard)(5,1,0,1,summaryCard)(5,1,0,2,summaryCard)
+
+# design-tablet-domain success=True
+grid:3x4;(3,1,0,0,textCard)(1,1,0,1,summaryCard)(3,1,0,2,summaryCard)(3,1,0,3,textCard)
+
+# design-square-domain success=True
+grid:3x3;(3,1,0,0,textCard)(2,1,0,1,summaryCard)(1,1,2,1,textCard)(3,1,0,2,summaryCard)
+
+# design-phone-domain-stack success=True
+grid:1x3;(1,1,0,0,textCard)(1,1,0,1,textCard)(1,1,0,2,summaryCard)
+
+# psuip-class-is-over success=True
+grid:5x3;(5,1,0,0,textCard)(1,1,0,1,targetStatCard)(1,1,1,1,targetStatCard)(1,1,2,1,targetStatCard)(1,1,3,1,targetStatCard)(2,1,0,2,showcaseCard)(3,1,2,2,__rawMarkdown__)
+
+# psuip-contents-legend success=True
+grid:5x3;(5,1,0,0,textCard)(5,1,0,1,commonStyleServiceListDesc)(5,1,0,2,heroCard)
+
+# psuip-functions-notes success=True
+grid:5x3;(5,1,0,0,textCard)(5,1,0,1,__rawMarkdown__)
+
+# psuip-math-final success=True
+grid:5x3;(5,1,0,0,textCard)(2,1,0,1,targetStatCard)(2,1,2,1,targetStatCard)(1,1,4,1,targetStatCard)(2,1,0,2,showcaseCard)(2,1,2,2,__rawMarkdown__)(1,1,4,2,mistakesCard)
+
+# psuip-tager success=True
+grid:5x3;(3,3,0,0,targetStatCard)
+
+# psuip-the-domain success=True
+grid:5x3;(5,1,0,0,textCard)(5,1,0,1,textCard)(2,1,0,2,summaryCard)(3,1,2,2,summaryCard)
+
+# psuip-phone-contents-legend success=True
+grid:1x3;(1,1,0,0,textCard)(1,1,0,1,commonStyleServiceListDesc)(1,1,0,2,heroCard)
+
+# psuip-phone-tager success=True
+grid:1x3;(1,3,0,0,targetStatCard)
+
+# psuip-phone-the-domain success=True
+grid:1x3;(1,1,0,0,textCard)(1,1,0,1,textCard)(1,1,0,2,summaryCard)
+
+# psuip-dashboard-class-over success=True
+grid:7x3;(5,1,0,0,textCard)(2,2,5,0,targetStatCard)(2,1,0,1,targetStatCard)(2,1,2,1,targetStatCard)(1,1,4,1,targetStatCard)(5,1,0,2,showcaseCard)(2,1,5,2,__rawMarkdown__)
+
+# psuip-dashboard-math-final success=True
+grid:7x3;(5,1,0,0,textCard)(2,2,5,0,targetStatCard)(2,1,0,1,targetStatCard)(2,1,2,1,targetStatCard)(2,1,0,2,showcaseCard)(3,1,2,2,__rawMarkdown__)(2,1,5,2,mistakesCard)
+
+# 1 success=True
+grid:8x5;(5,1,0,0,textCard)(3,2,5,0,targetStatCard)(2,1,0,1,targetStatCard)(2,1,2,1,targetStatCard)(1,1,4,1,targetStatCard)(8,1,0,2,showcaseCard)(5,1,0,3,contentSummaryCard)(3,1,5,3,contentSummaryCard)(8,1,0,4,showcaseCard)
+
+# 2 success=True
+grid:8x5;(5,1,0,0,textCard)(3,2,5,0,targetStatCard)(2,3,0,1,showcaseCard)(2,1,2,1,targetStatCard)(3,2,2,2,Topology)(3,1,5,2,contentSummaryCard)(8,1,0,4,targetStatCard)
+
+# 3 success=True
+grid:8x5;(5,1,0,0,textCard)(3,2,5,0,targetStatCard)(2,3,0,1,showcaseCard)(2,1,2,1,targetStatCard)(1,1,4,1,targetStatCard)(3,2,2,2,mistakesCard)(3,1,5,2,mistakesCard)(3,1,5,3,mistakesCard)(8,1,0,4,__rawMarkdown__)
+
+# 5 success=True
+grid:8x5;(5,1,0,0,textCard)(3,2,5,0,targetStatCard)(2,3,0,1,showcaseCard)(3,3,2,1,mistakesCard)(3,1,5,2,mistakesCard)(3,1,5,3,mistakesCard)(8,1,0,4,Topology)
+
+# 7 success=True
+grid:8x5;(5,1,0,0,textCard)(3,2,5,0,targetStatCard)(2,3,0,1,showcaseCard)(3,1,2,1,mistakesCard)(3,2,2,2,contentSummaryCard)(3,1,5,2,mistakesCard)(3,1,5,3,mistakesCard)(8,1,0,4,targetStatCard)
+
+# 1-1 success=True
+grid:8x5;(5,1,0,0,textCard)(3,2,5,0,targetStatCard)(2,3,0,1,showcaseCard)(3,3,2,1,targetStatCard)(3,1,5,2,targetStatCard)(3,1,5,3,targetStatCard)(8,1,0,4,__rawMarkdown__)
+
+# 22-1 success=True
+grid:3x6;(3,3,0,0,[table:commonStyle])(3,2,0,3,__rawMarkdown__)

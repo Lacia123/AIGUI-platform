@@ -1,0 +1,187 @@
+{
+  "canvas": {
+    "width": 768,
+    "height": 1024,
+    "gap": 16.0
+  },
+  "cardCount": 6,
+  "candidates": [
+    {
+      "rank": 1,
+      "score": 0.350986,
+      "penalties": {
+        "overflow": 0.0,
+        "too_narrow": 0.0,
+        "aspect_ratio": 0.000986,
+        "excess_space": 0.0,
+        "complexity": 0.35,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "column",
+        "children": [
+          {
+            "kind": "row",
+            "children": [
+              {
+                "kind": "column",
+                "children": [
+                  {
+                    "kind": "card",
+                    "cardIndex": 0
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 1
+                  }
+                ]
+              },
+              {
+                "kind": "column",
+                "children": [
+                  {
+                    "kind": "card",
+                    "cardIndex": 2
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 3
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 4
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "card",
+            "cardIndex": 5
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:column>\n    <layout:row>\n      <layout:column>\n        <textCard>\n          <text_title>CONTENTS</text_title>\n        </textCard>\n        <commonStyleServiceList>\n          <icon>1</icon>\n          <title>Definition of Functions</title>\n        </commonStyleServiceList>\n      </layout:column>\n      <layout:column>\n        <commonStyleServiceList>\n          <icon>2</icon>\n          <title>Fundamental Properties</title>\n        </commonStyleServiceList>\n        <commonStyleServiceList>\n          <icon>3</icon>\n          <title>Practical Applications</title>\n        </commonStyleServiceList>\n        <commonStyleServiceList>\n          <icon>4</icon>\n          <title>Visual Data Analysis</title>\n        </commonStyleServiceList>\n      </layout:column>\n    </layout:row>\n    <heroCard>\n      <title>SOURCE LEGEND</title>\n      <metrics>🔵 Lecture Audio</metrics>\n      <metrics>🟣 Blackboard Photo</metrics>\n      <metrics>🟠 Handwritten Note</metrics>\n      <metrics>🟢 Slide Card</metrics>\n    </heroCard>\n  </layout:column>\n</layout:root>\n"
+    },
+    {
+      "rank": 2,
+      "score": 0.351021,
+      "penalties": {
+        "overflow": 0.0,
+        "too_narrow": 0.0,
+        "aspect_ratio": 0.001021,
+        "excess_space": 0.0,
+        "complexity": 0.35,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "column",
+        "children": [
+          {
+            "kind": "row",
+            "children": [
+              {
+                "kind": "column",
+                "children": [
+                  {
+                    "kind": "card",
+                    "cardIndex": 0
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 1
+                  }
+                ]
+              },
+              {
+                "kind": "column",
+                "children": [
+                  {
+                    "kind": "card",
+                    "cardIndex": 2
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "card",
+            "cardIndex": 4
+          },
+          {
+            "kind": "card",
+            "cardIndex": 5
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:column>\n    <layout:row>\n      <layout:column>\n        <textCard>\n          <text_title>CONTENTS</text_title>\n        </textCard>\n        <commonStyleServiceList>\n          <icon>1</icon>\n          <title>Definition of Functions</title>\n        </commonStyleServiceList>\n      </layout:column>\n      <layout:column>\n        <commonStyleServiceList>\n          <icon>2</icon>\n          <title>Fundamental Properties</title>\n        </commonStyleServiceList>\n        <commonStyleServiceList>\n          <icon>3</icon>\n          <title>Practical Applications</title>\n        </commonStyleServiceList>\n      </layout:column>\n    </layout:row>\n    <commonStyleServiceList>\n      <icon>4</icon>\n      <title>Visual Data Analysis</title>\n    </commonStyleServiceList>\n    <heroCard>\n      <title>SOURCE LEGEND</title>\n      <metrics>🔵 Lecture Audio</metrics>\n      <metrics>🟣 Blackboard Photo</metrics>\n      <metrics>🟠 Handwritten Note</metrics>\n      <metrics>🟢 Slide Card</metrics>\n    </heroCard>\n  </layout:column>\n</layout:root>\n"
+    },
+    {
+      "rank": 3,
+      "score": 0.352829,
+      "penalties": {
+        "overflow": 0.0,
+        "too_narrow": 0.0,
+        "aspect_ratio": 0.002829,
+        "excess_space": 0.0,
+        "complexity": 0.35,
+        "depth": 0.0,
+        "row_mismatch": 0.0,
+        "mobile_row_root": 0.0
+      },
+      "layout": {
+        "kind": "column",
+        "children": [
+          {
+            "kind": "row",
+            "children": [
+              {
+                "kind": "column",
+                "children": [
+                  {
+                    "kind": "card",
+                    "cardIndex": 0
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 1
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 2
+                  }
+                ]
+              },
+              {
+                "kind": "column",
+                "children": [
+                  {
+                    "kind": "card",
+                    "cardIndex": 3
+                  },
+                  {
+                    "kind": "card",
+                    "cardIndex": 4
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "kind": "card",
+            "cardIndex": 5
+          }
+        ]
+      },
+      "psuip": "<layout:root>\n  <layout:column>\n    <layout:row>\n      <layout:column>\n        <textCard>\n          <text_title>CONTENTS</text_title>\n        </textCard>\n        <commonStyleServiceList>\n          <icon>1</icon>\n          <title>Definition of Functions</title>\n        </commonStyleServiceList>\n        <commonStyleServiceList>\n          <icon>2</icon>\n          <title>Fundamental Properties</title>\n        </commonStyleServiceList>\n      </layout:column>\n      <layout:column>\n        <commonStyleServiceList>\n          <icon>3</icon>\n          <title>Practical Applications</title>\n        </commonStyleServiceList>\n        <commonStyleServiceList>\n          <icon>4</icon>\n          <title>Visual Data Analysis</title>\n        </commonStyleServiceList>\n      </layout:column>\n    </layout:row>\n    <heroCard>\n      <title>SOURCE LEGEND</title>\n      <metrics>🔵 Lecture Audio</metrics>\n      <metrics>🟣 Blackboard Photo</metrics>\n      <metrics>🟠 Handwritten Note</metrics>\n      <metrics>🟢 Slide Card</metrics>\n    </heroCard>\n  </layout:column>\n</layout:root>\n"
+    }
+  ]
+}

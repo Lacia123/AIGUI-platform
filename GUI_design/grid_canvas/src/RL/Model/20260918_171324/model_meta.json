@@ -1,0 +1,31 @@
+{
+  "obs_schema_version": 5,
+  "card_obs_dim": 19,
+  "spatial_channels": 7,
+  "layout_stats_dim": 5,
+  "max_cols": 8,
+  "max_rows": 6,
+  "max_cards": 32,
+  "action_mode": "top_right_anchor_wh",
+  "action_space_size": 48,
+  "features_dim": 256,
+  "card_d_model": 128,
+  "card_n_layers": 3,
+  "fuse_res_blocks": 2,
+  "type_names": [
+    "targetStatCard",
+    "mistakesCard",
+    "showcaseCard",
+    "summaryCard",
+    "textCard",
+    "commonStyleServiceListDesc",
+    "pairedImageTextCard",
+    "heroCard",
+    "Topology",
+    "__rawMarkdown__",
+    "[table:commonStyle]",
+    "contentSummaryCard"
+  ],
+  "ent_coef": 0.02,
+  "source": "all"
+}

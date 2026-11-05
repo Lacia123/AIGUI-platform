@@ -7,286 +7,237 @@ from pathlib import Path
 
 from .design_mockups import DESIGN_MOCKUP_SAMPLES
 from .layout_format import stringify_layout_sequence
-from .psuip_typed_samples import PSUIP_TYPED_SAMPLES
+from .psuip_typed_samples import PSUIP_TYPED_SAMPLES, _c
 
-# 与页面默认 cellW0/H0=80、gap=16 一致：
-#   phone 390×844 → 4×8；tablet 768×1024 → 8×10；
-#   desktop 1280×800 → 13×8；dashboard 1880×680 → 19×7；square 800×800 → 8×8
-PRESETS = {
-    "phone": {
-        "id": "phone",
-        "label": "手机 390×844（4×8 @80/16）",
-        "width": 390,
-        "height": 844,
-        "cols": 4,
-        "rows": 8,
-        "cell": 80,
-        "gap": 16,
-    },
-    "tablet": {
-        "id": "tablet",
-        "label": "平板 768×1024（8×10 @80/16）",
-        "width": 768,
-        "height": 1024,
-        "cols": 8,
-        "rows": 10,
-        "cell": 80,
-        "gap": 16,
-    },
-    "desktop": {
-        "id": "desktop",
-        "label": "桌面 1280×800（13×8 @80/16）",
-        "width": 1280,
-        "height": 800,
-        "cols": 13,
-        "rows": 8,
-        "cell": 80,
-        "gap": 16,
-    },
-    "dashboard": {
-        "id": "dashboard",
-        "label": "仪表盘 1880×680（19×7 @80/16）",
-        "width": 1880,
-        "height": 680,
-        "cols": 19,
-        "rows": 7,
-        "cell": 80,
-        "gap": 16,
-    },
-    "square": {
-        "id": "square",
-        "label": "方阵 800×800（8×8 @80/16）",
-        "width": 800,
-        "height": 800,
-        "cols": 8,
-        "rows": 8,
-        "cell": 80,
-        "gap": 16,
-    },
+# 单位格 228×216 + gap 16；cols/rows 由页面分辨率正向推导：
+#   cols = floor((pageW + gap) / (cellW + gap))
+CELL_W0 = 228
+CELL_H0 = 216
+GAP = 16
+
+# 常见设备/画板像素（内容区）；格子数随单格变大而变少
+PAGE_PRESETS: dict[str, tuple[int, int, str]] = {
+    "phone": (390, 844, "手机"),
+    "tablet": (768, 1024, "平板"),
+    "desktop": (1280, 800, "桌面"),
+    "dashboard": (1880, 680, "仪表盘"),
+    "square": (800, 800, "方阵"),
 }
 
-# 与 src/sampleLayouts.ts 经典骨架保持同步：每项 cards 为 (w,h,x,y)
+
+def _grid_from_page(page_w: int, page_h: int) -> tuple[int, int]:
+    cols = max(1, (int(page_w) + GAP) // (CELL_W0 + GAP))
+    rows = max(1, (int(page_h) + GAP) // (CELL_H0 + GAP))
+    return cols, rows
+
+
+def _preset(pid: str, label_prefix: str, width: int, height: int) -> dict:
+    cols, rows = _grid_from_page(width, height)
+    return {
+        "id": pid,
+        "label": f"{label_prefix} {width}×{height}（{cols}×{rows} @228×216/16）",
+        "width": width,
+        "height": height,
+        "cols": cols,
+        "rows": rows,
+        "cell_w": CELL_W0,
+        "cell_h": CELL_H0,
+        "cell": CELL_W0,
+        "gap": GAP,
+    }
+
+
+PRESETS = {
+    pid: _preset(pid, prefix, w, h)
+    for pid, (w, h, prefix) in PAGE_PRESETS.items()
+}
+
+# 与 src/sampleLayouts.ts 同步：每张卡均含 type（dict via _c）
+# 格网：phone1×3 / tablet3×4 / desktop5×3 / dashboard7×3 / square3×3
 CLASSIC_SAMPLES: list[dict] = [
     {
         "id": "phone-feed",
         "preset_id": "phone",
         "label": "信息流",
-        "description": "顶栏 + 列表行 + 底栏（4×8）",
+        "description": "顶 / 中 / 底三行通栏（1×3）",
         "cards": [
-            (4, 1, 0, 0),
-            (4, 1, 0, 1),
-            (4, 1, 0, 2),
-            (4, 1, 0, 3),
-            (4, 1, 0, 4),
-            (4, 1, 0, 5),
-            (4, 1, 0, 6),
-            (4, 1, 0, 7),
+            _c(1, 1, 0, 0, "textCard", "顶栏"),
+            _c(1, 1, 0, 1, "commonStyleServiceListDesc", "列表"),
+            _c(1, 1, 0, 2, "textCard", "底栏"),
         ],
     },
     {
         "id": "phone-landing",
         "preset_id": "phone",
         "label": "落地页",
-        "description": "顶栏 + Hero + 2×2 功能卡 + CTA",
+        "description": "顶栏 + Hero + CTA（1×3）",
         "cards": [
-            (4, 1, 0, 0),
-            (4, 2, 0, 1),
-            (2, 2, 0, 3),
-            (2, 2, 2, 3),
-            (2, 2, 0, 5),
-            (2, 2, 2, 5),
-            (4, 1, 0, 7),
+            _c(1, 1, 0, 0, "textCard", "顶栏"),
+            _c(1, 1, 0, 1, "heroCard", "Hero"),
+            _c(1, 1, 0, 2, "textCard", "CTA"),
         ],
     },
     {
         "id": "phone-profile",
         "preset_id": "phone",
         "label": "个人主页",
-        "description": "头图 + KPI + 内容块",
+        "description": "头图 + 内容 + 底栏（1×3）",
         "cards": [
-            (4, 1, 0, 0),
-            (4, 2, 0, 1),
-            (2, 1, 0, 3),
-            (2, 1, 2, 3),
-            (4, 2, 0, 4),
-            (4, 2, 0, 6),
+            _c(1, 1, 0, 0, "heroCard", "头图"),
+            _c(1, 1, 0, 1, "summaryCard", "内容"),
+            _c(1, 1, 0, 2, "textCard", "底栏"),
         ],
     },
     {
         "id": "tablet-blog",
         "preset_id": "tablet",
         "label": "双栏博客",
-        "description": "顶栏 + 主栏/侧栏 + 底栏",
+        "description": "顶栏 + 主/侧 + 底（3×4）",
         "cards": [
-            (8, 1, 0, 0),
-            (5, 8, 0, 1),
-            (3, 8, 5, 1),
-            (8, 1, 0, 9),
+            _c(3, 1, 0, 0, "textCard", "顶栏"),
+            _c(2, 2, 0, 1, "__rawMarkdown__", "主栏"),
+            _c(1, 2, 2, 1, "summaryCard", "侧栏"),
+            _c(3, 1, 0, 3, "textCard", "底栏"),
         ],
     },
     {
         "id": "tablet-gallery",
         "preset_id": "tablet",
         "label": "卡片画廊",
-        "description": "顶栏 + 2×4 栅格 + 底栏",
+        "description": "顶栏 + 2×3 栅格 + 底（3×4）",
         "cards": [
-            (8, 1, 0, 0),
-            (2, 2, 0, 1),
-            (2, 2, 2, 1),
-            (2, 2, 4, 1),
-            (2, 2, 6, 1),
-            (2, 2, 0, 3),
-            (2, 2, 2, 3),
-            (2, 2, 4, 3),
-            (2, 2, 6, 3),
-            (2, 2, 0, 5),
-            (2, 2, 2, 5),
-            (2, 2, 4, 5),
-            (2, 2, 6, 5),
-            (2, 2, 0, 7),
-            (2, 2, 2, 7),
-            (2, 2, 4, 7),
-            (2, 2, 6, 7),
-            (8, 1, 0, 9),
+            _c(3, 1, 0, 0, "textCard", "顶栏"),
+            _c(1, 1, 0, 1, "showcaseCard", "卡1"),
+            _c(1, 1, 1, 1, "showcaseCard", "卡2"),
+            _c(1, 1, 2, 1, "showcaseCard", "卡3"),
+            _c(1, 1, 0, 2, "showcaseCard", "卡4"),
+            _c(1, 1, 1, 2, "showcaseCard", "卡5"),
+            _c(1, 1, 2, 2, "showcaseCard", "卡6"),
+            _c(3, 1, 0, 3, "textCard", "底栏"),
         ],
     },
     {
         "id": "tablet-dashboard",
         "preset_id": "tablet",
         "label": "仪表盘",
-        "description": "侧栏 + KPI + 图表/明细",
+        "description": "侧栏 + KPI + 主区（3×4）",
         "cards": [
-            (2, 10, 0, 0),
-            (6, 1, 2, 0),
-            (2, 1, 2, 1),
-            (2, 1, 4, 1),
-            (2, 1, 6, 1),
-            (4, 6, 2, 2),
-            (2, 6, 6, 2),
-            (6, 2, 2, 8),
+            _c(1, 4, 0, 0, "textCard", "侧栏"),
+            _c(2, 1, 1, 0, "textCard", "标题"),
+            _c(1, 1, 1, 1, "targetStatCard", "KPI A"),
+            _c(1, 1, 2, 1, "targetStatCard", "KPI B"),
+            _c(2, 2, 1, 2, "showcaseCard", "主图"),
         ],
     },
     {
         "id": "desktop-dashboard",
         "preset_id": "desktop",
         "label": "仪表盘壳",
-        "description": "侧栏 + KPI + 主图/侧栏 + 底表",
+        "description": "侧栏 + KPI + 主图（5×3）",
         "cards": [
-            (2, 8, 0, 0),
-            (11, 1, 2, 0),
-            (3, 1, 2, 1),
-            (3, 1, 5, 1),
-            (2, 1, 8, 1),
-            (3, 1, 10, 1),
-            (7, 5, 2, 2),
-            (4, 5, 9, 2),
-            (11, 1, 2, 7),
+            _c(1, 3, 0, 0, "textCard", "侧栏"),
+            _c(4, 1, 1, 0, "textCard", "顶栏"),
+            _c(1, 1, 1, 1, "targetStatCard", "KPI A"),
+            _c(1, 1, 2, 1, "targetStatCard", "KPI B"),
+            _c(1, 1, 3, 1, "targetStatCard", "KPI C"),
+            _c(1, 1, 4, 1, "targetStatCard", "KPI D"),
+            _c(2, 1, 1, 2, "showcaseCard", "主图"),
+            _c(2, 1, 3, 2, "__rawMarkdown__", "明细"),
         ],
     },
     {
         "id": "desktop-holy-grail",
         "preset_id": "desktop",
         "label": "圣杯布局",
-        "description": "顶栏 + 侧栏/主内容 + 底栏",
+        "description": "顶栏 + 侧/主 + 底（5×3）",
         "cards": [
-            (13, 1, 0, 0),
-            (3, 6, 0, 1),
-            (10, 6, 3, 1),
-            (13, 1, 0, 7),
+            _c(5, 1, 0, 0, "textCard", "顶栏"),
+            _c(1, 1, 0, 1, "summaryCard", "侧栏"),
+            _c(4, 1, 1, 1, "__rawMarkdown__", "主内容"),
+            _c(5, 1, 0, 2, "textCard", "底栏"),
         ],
     },
     {
         "id": "desktop-three-col",
         "preset_id": "desktop",
         "label": "三栏后台",
-        "description": "顶栏 + 左导航/主区/右 aside + 底栏",
+        "description": "顶栏 + 左/中/右 + 底（5×3）",
         "cards": [
-            (13, 1, 0, 0),
-            (2, 6, 0, 1),
-            (8, 6, 2, 1),
-            (3, 6, 10, 1),
-            (13, 1, 0, 7),
+            _c(5, 1, 0, 0, "textCard", "顶栏"),
+            _c(1, 1, 0, 1, "textCard", "左导航"),
+            _c(3, 1, 1, 1, "__rawMarkdown__", "主区"),
+            _c(1, 1, 4, 1, "summaryCard", "右侧栏"),
+            _c(5, 1, 0, 2, "textCard", "底栏"),
         ],
     },
     {
         "id": "desktop-magazine",
         "preset_id": "desktop",
         "label": "杂志分栏",
-        "description": "顶栏 + 大主卡 + 右侧堆叠 + 底栏",
+        "description": "顶栏 + 主卡 + 右侧堆叠（5×3）",
         "cards": [
-            (13, 1, 0, 0),
-            (8, 6, 0, 1),
-            (5, 3, 8, 1),
-            (5, 3, 8, 4),
-            (13, 1, 0, 7),
+            _c(5, 1, 0, 0, "textCard", "顶栏"),
+            _c(3, 2, 0, 1, "heroCard", "大主卡"),
+            _c(2, 1, 3, 1, "summaryCard", "侧卡上"),
+            _c(2, 1, 3, 2, "summaryCard", "侧卡下"),
         ],
     },
     {
         "id": "square-holy-grail",
         "preset_id": "square",
         "label": "圣杯布局",
-        "description": "顶栏 + 侧栏/主区 + 底栏",
+        "description": "顶 + 侧/主 + 底（3×3）",
         "cards": [
-            (8, 1, 0, 0),
-            (2, 6, 0, 1),
-            (6, 6, 2, 1),
-            (8, 1, 0, 7),
+            _c(3, 1, 0, 0, "textCard", "顶栏"),
+            _c(1, 1, 0, 1, "summaryCard", "侧栏"),
+            _c(2, 1, 1, 1, "__rawMarkdown__", "主区"),
+            _c(3, 1, 0, 2, "textCard", "底栏"),
         ],
     },
     {
         "id": "square-dashboard",
         "preset_id": "square",
         "label": "仪表盘",
-        "description": "侧栏 + KPI + 图表/明细",
+        "description": "侧栏 + KPI + 主区（3×3）",
         "cards": [
-            (2, 8, 0, 0),
-            (6, 1, 2, 0),
-            (2, 1, 2, 1),
-            (2, 1, 4, 1),
-            (2, 1, 6, 1),
-            (4, 5, 2, 2),
-            (2, 5, 6, 2),
-            (6, 1, 2, 7),
+            _c(1, 3, 0, 0, "textCard", "侧栏"),
+            _c(2, 1, 1, 0, "textCard", "标题"),
+            _c(1, 1, 1, 1, "targetStatCard", "KPI A"),
+            _c(1, 1, 2, 1, "targetStatCard", "KPI B"),
+            _c(2, 1, 1, 2, "showcaseCard", "主图"),
         ],
     },
     {
         "id": "square-gallery",
         "preset_id": "square",
         "label": "卡片画廊",
-        "description": "顶栏 + 2×3 栅格 + 底栏",
+        "description": "九宫格（3×3）",
         "cards": [
-            (8, 1, 0, 0),
-            (2, 2, 0, 1),
-            (2, 2, 2, 1),
-            (2, 2, 4, 1),
-            (2, 2, 6, 1),
-            (2, 2, 0, 3),
-            (2, 2, 2, 3),
-            (2, 2, 4, 3),
-            (2, 2, 6, 3),
-            (2, 2, 0, 5),
-            (2, 2, 2, 5),
-            (2, 2, 4, 5),
-            (2, 2, 6, 5),
-            (8, 1, 0, 7),
+            _c(1, 1, 0, 0, "showcaseCard", "卡1"),
+            _c(1, 1, 1, 0, "showcaseCard", "卡2"),
+            _c(1, 1, 2, 0, "showcaseCard", "卡3"),
+            _c(1, 1, 0, 1, "showcaseCard", "卡4"),
+            _c(1, 1, 1, 1, "showcaseCard", "卡5"),
+            _c(1, 1, 2, 1, "showcaseCard", "卡6"),
+            _c(1, 1, 0, 2, "showcaseCard", "卡7"),
+            _c(1, 1, 1, 2, "showcaseCard", "卡8"),
+            _c(1, 1, 2, 2, "showcaseCard", "卡9"),
         ],
     },
     {
         "id": "square-landing",
         "preset_id": "square",
         "label": "落地页",
-        "description": "顶栏 + Hero + 双栏 + 底栏",
+        "description": "顶栏 + Hero + 双栏（3×3）",
         "cards": [
-            (8, 1, 0, 0),
-            (8, 2, 0, 1),
-            (4, 4, 0, 3),
-            (4, 4, 4, 3),
-            (8, 1, 0, 7),
+            _c(3, 1, 0, 0, "textCard", "顶栏"),
+            _c(3, 1, 0, 1, "heroCard", "Hero"),
+            _c(1, 1, 0, 2, "summaryCard", "左栏"),
+            _c(2, 1, 1, 2, "summaryCard", "右栏"),
         ],
     },
 ]
 
-# 经典骨架 + 设计稿抽象 + PSUIP 自适应转网格
 RAW_SAMPLES = CLASSIC_SAMPLES + DESIGN_MOCKUP_SAMPLES + PSUIP_TYPED_SAMPLES
 
 
@@ -309,24 +260,39 @@ def _normalize_card(i: int, raw_card) -> dict:
 
 def build_episode(raw: dict) -> dict:
     preset = PRESETS[raw["preset_id"]]
-    cards = []
-    cards_wh = []
-    target_xy = []
-    for i, raw_card in enumerate(raw["cards"]):
-        card = _normalize_card(i, raw_card)
-        cards.append(card)
-        wh = {"id": card["id"], "w": card["w"], "h": card["h"]}
+    normalized = [_normalize_card(i, raw_card) for i, raw_card in enumerate(raw["cards"])]
+    # 阅读序：先上后下、同行左到右；再重编号 id。
+    normalized.sort(key=lambda c: (c["y"], c["x"]))
+    card_queue = []
+    expert_cards = []
+    for i, card in enumerate(normalized):
+        card = {**card, "id": f"c{i}"}
+        queue_card = {"id": card["id"]}
         if "type" in card:
-            wh["type"] = card["type"]
+            queue_card["type"] = card["type"]
         if "label" in card:
-            wh["label"] = card["label"]
-        cards_wh.append(wh)
-        target_xy.append({"id": card["id"], "x": card["x"], "y": card["y"]})
+            queue_card["label"] = card["label"]
+        if "color" in card:
+            queue_card["color"] = card["color"]
+        card_queue.append(queue_card)
+        expert_cards.append(
+            {
+                "id": card["id"],
+                "w": card["w"],
+                "h": card["h"],
+                "x": card["x"],
+                "y": card["y"],
+            }
+        )
 
     sequence = stringify_layout_sequence(
-        [(c["w"], c["h"], c["x"], c["y"]) for c in cards]
+        [
+            (box["w"], box["h"], box["x"], box["y"], queue.get("type"))
+            for queue, box in zip(card_queue, expert_cards)
+        ]
     )
     ep = {
+        "schema_version": 3,
         "id": raw["id"],
         "label": raw["label"],
         "description": raw["description"],
@@ -337,13 +303,15 @@ def build_episode(raw: dict) -> dict:
             "width": preset["width"],
             "height": preset["height"],
             "label": preset["label"],
+            "cell_w": preset.get("cell_w", CELL_W0),
+            "cell_h": preset.get("cell_h", CELL_H0),
+            "gap": preset.get("gap", GAP),
         },
-        "cards": cards,
-        "cards_wh": cards_wh,
-        "target_xy": target_xy,
+        "card_queue": card_queue,
+        "expert_cards": expert_cards,
         "sequence": sequence,
-        "n_cards": len(cards),
-        "area": sum(c["w"] * c["h"] for c in cards),
+        "n_cards": len(card_queue),
+        "area": sum(c["w"] * c["h"] for c in expert_cards),
     }
     if raw.get("source_file"):
         ep["source_file"] = raw["source_file"]
@@ -354,15 +322,16 @@ def build_dataset() -> dict:
     episodes = [build_episode(raw) for raw in RAW_SAMPLES]
     return {
         "name": "sample_layouts",
-        "version": "1.2",
+        "version": "3.0",
         "task": "layout_restore",
-        "cell": 80,
-        "gap": 16,
+        "cell_w": CELL_W0,
+        "cell_h": CELL_H0,
+        "cell": CELL_W0,
+        "gap": GAP,
         "format": {
-            "card": "(w,h,x,y) 或 {w,h,x,y,type,label}",
-            "input": "cards_wh: [{id,w,h,type?}, ...] + grid",
-            "target": "target_xy: [{id,x,y}, ...] 或 cards / sequence",
-            "grid": "cols/rows 由 page @ cell=80 gap=16 推导",
+            "input": "card_queue: [{id,type,label?}, ...] + grid",
+            "target": "expert_cards: [{id,w,h,x,y}, ...]",
+            "grid": "cols/rows = floor((page+gap)/(cell+gap))；cell=228×216 gap=16",
         },
         "presets": PRESETS,
         "n_episodes": len(episodes),
@@ -381,7 +350,6 @@ def _write_dataset(dataset: dict, json_path: Path, jsonl_path: Path) -> None:
 
 
 def export_dataset(out_dir: Path | None = None) -> tuple[Path, Path, Path, Path]:
-    # 默认写到 RL/data/（对齐 rl_train 的 data/）
     out_dir = out_dir or Path(__file__).resolve().parents[1] / "data"
     out_dir.mkdir(parents=True, exist_ok=True)
 
@@ -390,11 +358,10 @@ def export_dataset(out_dir: Path | None = None) -> tuple[Path, Path, Path, Path]
     jsonl_path = out_dir / "sample_layouts.jsonl"
     _write_dataset(full, json_path, jsonl_path)
 
-    # 单独导出设计稿子集，便于只拿设计数据训练
     design_eps = [build_episode(raw) for raw in DESIGN_MOCKUP_SAMPLES]
     design_ds = {
         "name": "design_mockups",
-        "version": "1.0",
+        "version": "3.0",
         "task": "layout_restore",
         "source": "education_app_mockups",
         "n_episodes": len(design_eps),
@@ -404,11 +371,10 @@ def export_dataset(out_dir: Path | None = None) -> tuple[Path, Path, Path, Path]
     design_jsonl = out_dir / "design_mockups.jsonl"
     _write_dataset(design_ds, design_json, design_jsonl)
 
-    # PSUIP 自适应 → 网格（带 type）
     psuip_eps = [build_episode(raw) for raw in PSUIP_TYPED_SAMPLES]
     psuip_ds = {
         "name": "psuip_typed_layouts",
-        "version": "1.0",
+        "version": "3.0",
         "task": "typed_layout",
         "source": "data/gird_with_cardtype/*.psuip.md",
         "n_episodes": len(psuip_eps),
@@ -427,6 +393,9 @@ if __name__ == "__main__":
         print(f"wrote {p}")
     data = json.loads(paths[0].read_text(encoding="utf-8"))
     print(f"episodes={data['n_episodes']} (classic+design+psuip)")
+    print("presets:")
+    for pid, p in data["presets"].items():
+        print(f"  {pid}: {p['width']}x{p['height']} -> {p['cols']}x{p['rows']}")
     design_n = sum(1 for ep in data["episodes"] if str(ep["id"]).startswith("design-"))
     psuip_n = sum(1 for ep in data["episodes"] if str(ep["id"]).startswith("psuip-"))
     print(f"design_mockups={design_n}  psuip_typed={psuip_n}")
@@ -434,7 +403,7 @@ if __name__ == "__main__":
         if not str(ep["id"]).startswith("psuip-"):
             continue
         g = ep["grid"]
-        types = [c.get("type", "?") for c in ep["cards"]]
+        types = [c.get("type", "?") for c in ep["card_queue"]]
         print(
             f"  {ep['id']:32} {g['cols']}x{g['rows']}  "
             f"n={ep['n_cards']:2}  types={types}"
